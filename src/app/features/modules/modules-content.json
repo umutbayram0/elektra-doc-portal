@@ -1,0 +1,29 @@
+{
+  "title": "Modules",
+  "description": "Module-based technical explanations and responsibilities.",
+  "cards": [
+    {
+      "id": "authentication",
+      "title": "Authentication",
+      "description": "Login, session handling and permission checks shared across projects.",
+      "children": [
+        {
+          "id": "route-guards",
+          "title": "Route Guards",
+          "description": "Route guards check user permissions before a protected route loads.",
+          "example": "import { inject } from '@angular/core';\nimport { CanActivateFn } from '@angular/router';\nimport { AuthService } from './auth.service';\n\nexport const authGuard: CanActivateFn = (route, state) => {\n  const authService = inject(AuthService);\n  return authService.isAuthenticated();\n};",
+          "exampleLang": "typescript",
+          "exampleFilename": "auth.guard.ts"
+        },
+        {
+          "id": "dependency-injection",
+          "title": "Dependency Injection",
+          "description": "AuthService is provided at the root level so it can be injected into guards and components as a singleton.",
+          "example": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class AuthService {\n  private readonly session = signal<string | null>(null);\n\n  isAuthenticated(): boolean {\n    return this.session() !== null;\n  }\n}",
+          "exampleLang": "typescript",
+          "exampleFilename": "auth.service.ts"
+        }
+      ]
+    }
+  ]
+}

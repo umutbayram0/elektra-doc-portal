@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elektraweb.dev/schemas/api-content.schema.json",
+  "title": "ApiContent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/DocNode"
+      }
+    }
+  },
+  "required": ["title", "description", "cards"],
+  "additionalProperties": false,
+  "$defs": {
+    "DocNode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "exampleLang": {
+          "type": "string"
+        },
+        "exampleFilename": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DocNode"
+          }
+        }
+      },
+      "required": ["id", "title", "description"],
+      "additionalProperties": false
+    }
+  }
+}

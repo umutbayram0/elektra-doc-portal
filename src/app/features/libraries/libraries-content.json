@@ -1,0 +1,39 @@
+{
+  "title": "Libraries",
+  "description": "Documentation for external libraries used in Elektraweb projects.",
+  "cards": [
+    {
+      "id": "angular-material",
+      "title": "Angular Material",
+      "description": "Component library providing the Material 3 building blocks used throughout this portal, such as cards and buttons.",
+      "children": [
+        {
+          "id": "theming",
+          "title": "Theming",
+          "description": "Color, typography and density are configured once for the whole app using mat.theme().",
+          "example": "@use '@angular/material' as mat;\n\nhtml {\n  @include mat.theme((\n    color: (\n      theme-type: dark,\n      primary: mat.$blue-palette,\n    ),\n    typography: Roboto,\n    density: 0,\n  ));\n}",
+          "exampleLang": "scss",
+          "exampleFilename": "material-theme.scss"
+        },
+        {
+          "id": "cards",
+          "title": "Cards",
+          "description": "mat-card wraps each documentation topic as an outlined, elevatable container.",
+          "example": "<mat-card appearance=\"outlined\">\n  <mat-card-header>\n    <mat-card-title>{{ title() }}</mat-card-title>\n  </mat-card-header>\n  <mat-card-content>\n    <p>{{ description() }}</p>\n  </mat-card-content>\n</mat-card>",
+          "exampleLang": "html",
+          "exampleFilename": "node-tile.ts"
+        }
+      ]
+    },
+    {
+      "id": "rxjs",
+      "title": "RxJS",
+      "description": "Reactive programming library used for asynchronous data streams."
+    },
+    {
+      "id": "ajv",
+      "title": "Ajv",
+      "description": "JSON Schema validator used to check documentation content files during testing."
+    }
+  ]
+}

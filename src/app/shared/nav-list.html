@@ -1,0 +1,46 @@
+<ng-template #list let-navItems>
+  <ul class="nav-list">
+    @for (item of navItems; track key(item)) {
+      <li>
+        <div class="nav-row">
+          <a
+            class="nav-link"
+            [routerLink]="'/' + item.path"
+            [fragment]="item.fragment"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{
+              paths: 'exact',
+              queryParams: 'ignored',
+              matrixParams: 'ignored',
+              fragment: item.fragment ? 'exact' : 'ignored'
+            }"
+          >
+            {{ item.label }}
+          </a>
+
+          @if (item.children && item.children.length > 0) {
+            <button
+              type="button"
+              class="nav-toggle"
+              [attr.aria-expanded]="expanded().has(key(item))"
+              [attr.aria-label]="(expanded().has(key(item)) ? 'Collapse ' : 'Expand ') + item.label + ' section'"
+              (click)="itemToggled.emit(item)"
+            >
+              <span class="chevron" [class.expanded]="expanded().has(key(item))" aria-hidden="true">
+                &rsaquo;
+              </span>
+            </button>
+          }
+        </div>
+
+        @if (item.children && item.children.length > 0 && expanded().has(key(item))) {
+          <div class="nav-children">
+            <ng-container *ngTemplateOutlet="list; context: { $implicit: item.children }" />
+          </div>
+        }
+      </li>
+    }
+  </ul>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="list; context: { $implicit: items() }" />

@@ -1,0 +1,29 @@
+.code-block {
+  margin: 0 0 32px;
+  max-width: 760px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--mat-sys-outline-variant);
+}
+
+.code-block-header {
+  padding: 8px 16px;
+  background-color: #2d333b;
+  color: #adbac7;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.code-block-pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+.code-block-code {
+  display: block;
+  padding: 16px 20px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}

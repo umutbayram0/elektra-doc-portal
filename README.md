@@ -1,59 +1,58 @@
-# ElektraDocPortal
+# Elektra Doc Portal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.4.
+An internal documentation portal for Elektraweb engineers, covering projects, modules, components, API and libraries. Built with Angular (standalone components, signals, zoneless change detection) and Angular Material.
 
 ## Development server
 
-To start a local development server, run:
-
 ```bash
-ng serve
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
+Open `http://localhost:4200/`. The app reloads automatically as you edit source files.
 
 ## Building
 
-To build the project run:
-
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Production build output goes to `dist/elektra-doc-portal`.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Testing
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+Runs the Vitest-based unit test suite (`@angular/build:unit-test`).
 
-For end-to-end (e2e) testing, run:
+## Linting
 
 ```bash
-ng e2e
+npm run lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Runs ESLint (`@angular-eslint`) over the project.
 
-## Additional Resources
+## Content structure
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Each documentation section (`Projects`, `Modules`, `Components`, `API`, `Libraries`) lives under `src/app/features/<section>/` and follows the same shape:
+
+- `<section>-content.json` — the actual page content, an array of `cards`.
+- `<section>-content.schema.json` — a JSON Schema the content must satisfy (enforced by `src/app/core/content/content-validation.spec.ts`).
+- `<section>-content.model.ts` — the TypeScript type matching the schema.
+- `<section>.ts` — the section's index page, listing its top-level cards.
+- `<section>.routes.ts` — two routes: `''` (the index page) and `'**'` (a wildcard, matched by `shared/node-detail.ts`, which renders whichever nested card the URL resolves to).
+
+Cards are `DocNode`s (`src/app/shared/doc-node.model.ts`) and can nest arbitrarily deep via `children`. Every node gets its own real URL, e.g. `/modules/authentication/route-guards`, not a fragment/anchor scroll. `shared/node-detail.ts` walks the node tree to match the URL, renders the node's title/description/code example, its children as link-cards one level deeper, and a breadcrumb trail back up.
+
+### Adding a new doc page
+
+1. Add a node (with a unique `id`, `title`, `description`, and optionally `example`/`exampleLang`/`exampleFilename`/`children`) to the relevant `<section>-content.json`.
+2. Run `npm test` — the schema validation spec will catch structural mistakes (missing `id`, unknown fields, etc.) before you even open the browser.
+
+`Overview` is the one exception: it's a static landing page with no children, sourced from `overview-content.json`'s `title`/`description`/`purpose` fields.
+
+## Search
+
+The sidebar search box (`shared/search-box.ts`) matches against a flattened index of every node's title and description, built once at startup (`core/search/search-index.ts`, `core/search/search.service.ts`). It only indexes the five route-based sections — `Overview` has no children to index.

@@ -1,0 +1,39 @@
+{
+  "title": "Projects",
+  "description": "Technical documentation pages for different Elektraweb software projects.",
+  "cards": [
+    {
+      "id": "web-apps",
+      "title": "Web Applications",
+      "description": "Architecture, routing and build notes for Elektraweb's Angular web applications.",
+      "children": [
+        {
+          "id": "routing",
+          "title": "Routing",
+          "description": "Feature areas are lazy-loaded using Angular's Router.",
+          "example": "export const routes: Routes = [\n  {\n    path: 'projects',\n    loadChildren: () =>\n      import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)\n  }\n];",
+          "exampleLang": "typescript",
+          "exampleFilename": "app.routes.ts"
+        },
+        {
+          "id": "server-side-rendering",
+          "title": "Server-Side Rendering",
+          "description": "Renders the application on the server for a faster first paint and better SEO.",
+          "example": "import { bootstrapApplication } from '@angular/platform-browser';\nimport { provideClientHydration } from '@angular/platform-browser';\nimport { App } from './app/app';\n\nbootstrapApplication(App, {\n  providers: [provideClientHydration()]\n});",
+          "exampleLang": "typescript",
+          "exampleFilename": "main.ts"
+        }
+      ]
+    },
+    {
+      "id": "mobile-apps",
+      "title": "Mobile Applications",
+      "description": "Codebase structure and release process for Elektraweb's iOS and Android applications."
+    },
+    {
+      "id": "internal-tools",
+      "title": "Internal Tools",
+      "description": "Internal dashboards and admin tools used by Elektraweb teams."
+    }
+  ]
+}

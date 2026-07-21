@@ -1,0 +1,41 @@
+{
+  "title": "Components",
+  "description": "Frontend component usage, inputs, outputs and code examples.",
+  "cards": [
+    {
+      "id": "buttons",
+      "title": "Buttons",
+      "description": "Primary, secondary and icon button variants with usage guidelines.",
+      "children": [
+        {
+          "id": "primary-button",
+          "title": "Primary Button",
+          "description": "The main call-to-action button, styled with Angular Material's mat-button.",
+          "example": "<button mat-flat-button color=\"primary\">Save changes</button>\n<button mat-stroked-button>Cancel</button>",
+          "exampleLang": "html",
+          "exampleFilename": "buttons.html"
+        }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "Forms",
+      "description": "Reusable form field components and validation patterns.",
+      "children": [
+        {
+          "id": "reactive-forms",
+          "title": "Reactive Forms",
+          "description": "Form state is modeled with FormGroup and FormControl, validated using Validators.",
+          "example": "import { Component } from '@angular/core';\nimport { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';\n\n@Component({\n  selector: 'app-profile-form',\n  imports: [ReactiveFormsModule],\n  template: `\n    <form [formGroup]=\"profileForm\">\n      <input formControlName=\"firstName\" placeholder=\"First name\" />\n      <input formControlName=\"lastName\" placeholder=\"Last name\" />\n    </form>\n  `\n})\nexport class ProfileForm {\n  profileForm = new FormGroup({\n    firstName: new FormControl(''),\n    lastName: new FormControl('')\n  });\n}",
+          "exampleLang": "typescript",
+          "exampleFilename": "profile-form.ts"
+        }
+      ]
+    },
+    {
+      "id": "data-tables",
+      "title": "Data Tables",
+      "description": "Sortable, filterable tables for displaying tabular data."
+    }
+  ]
+}

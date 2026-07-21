@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  z-index: 100;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus-visible {
+  top: 8px;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 88px 280px 1fr;
+  min-height: 100vh;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.icon-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 12px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}
+
+.rail-logo {
+  display: block;
+  margin-bottom: 8px;
+  line-height: 0;
+}
+
+.rail-logo-img {
+  width: 64px;
+  height: auto;
+}
+
+.sidebar {
+  padding: 32px 20px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 16px;
+}
+
+.content {
+  padding: 48px;
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .shell {
+    grid-template-columns: 88px 260px 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-rail,
+  .sidebar {
+    display: none;
+  }
+}
