@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './shared/not-found';
+import { pageTitle } from './shared/route-title';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -27,5 +28,5 @@ export const routes: Routes = [
     path: 'libraries',
     loadChildren: () => import('./features/libraries/libraries.routes').then(m => m.LIBRARIES_ROUTES)
   },
-  { path: '**', component: NotFound }
+  { path: '**', component: NotFound, title: pageTitle('Page not found') }
 ];

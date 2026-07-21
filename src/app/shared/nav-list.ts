@@ -1,6 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, input, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, type IsActiveMatchOptions } from '@angular/router';
 import type { NavItem } from './nav-item.model';
 
 @Component({
@@ -14,7 +14,12 @@ export class NavList {
   readonly expanded = input.required<ReadonlySet<string>>();
   readonly itemToggled = output<NavItem>();
 
-  key(item: NavItem): string {
-    return item.fragment ? `${item.path}#${item.fragment}` : item.path;
+  activeOptions(item: NavItem): IsActiveMatchOptions {
+    return {
+      paths: item.children?.length ? 'subset' : 'exact',
+      queryParams: 'ignored',
+      matrixParams: 'ignored',
+      fragment: 'ignored'
+    };
   }
 }

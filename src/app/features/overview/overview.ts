@@ -14,9 +14,6 @@ import type { OverviewContent } from './overview-content.model';
     </p>
 
     <mat-card appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>Overview</mat-card-title>
-      </mat-card-header>
       <mat-card-content>
         <p>{{ content.purpose }}</p>
       </mat-card-content>

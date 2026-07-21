@@ -1,28 +1,33 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
+<button
+  type="button"
+  class="nav-toggle-mobile"
+  [attr.aria-expanded]="mobileNavOpen()"
+  aria-controls="sidebar-nav"
+  aria-label="Toggle navigation menu"
+  (click)="toggleMobileNav()"
+>
+  <span class="hamburger" aria-hidden="true"></span>
+</button>
+
+@if (mobileNavOpen()) {
+  <button type="button" class="nav-backdrop" aria-label="Close navigation menu" (click)="toggleMobileNav()"></button>
+}
+
 <div class="shell">
-
-  <nav class="icon-rail" aria-label="Primary">
-    <a class="rail-logo" routerLink="/overview" aria-label="Elektraweb Documentation home">
-      <img
-        ngSrc="elektraweb-logo.png"
-        width="450"
-        height="81"
-        priority
-        alt="Elektraweb"
-        class="rail-logo-img"
-      />
+  <aside class="sidebar" id="sidebar-nav" [class.open]="mobileNavOpen()" aria-label="Documentation navigation">
+    <a class="sidebar-logo" routerLink="/overview" aria-label="Elektraweb Documentation home">
+      <img ngSrc="elektraweb-logo.png" width="450" height="81" priority alt="Elektraweb" class="sidebar-logo-img" />
     </a>
-  </nav>
 
-  <aside class="sidebar" aria-label="Documentation sections">
-    <p class="sidebar-title">Documentation</p>
     <app-search-box />
+
+    <p class="sidebar-title">Documentation</p>
     <app-nav-list [items]="navSections" [expanded]="expanded()" (itemToggled)="toggle($event)" />
   </aside>
 
   <main class="content" id="main-content" tabindex="-1">
     <router-outlet />
   </main>
-
 </div>
