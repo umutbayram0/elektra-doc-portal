@@ -2,19 +2,19 @@ import { Routes } from '@angular/router';
 import { FeatureIndex } from '../../shared/feature-index';
 import { NodeDetail } from '../../shared/node-detail';
 import { nodeDetailTitle, pageTitle } from '../../shared/route-title';
-import apiContent from './api-content.json';
+import guidesContent from './guides-content.json';
 
-export const API_ROUTES: Routes = [
+export const GUIDES_ROUTES: Routes = [
   {
     path: '',
     component: FeatureIndex,
-    data: { content: apiContent, basePath: 'api' },
-    title: pageTitle('API')
+    data: { content: guidesContent, basePath: 'guides' },
+    title: pageTitle('Guides')
   },
   {
     path: '**',
     component: NodeDetail,
-    data: { content: apiContent, basePath: 'api', sectionLabel: 'API' },
+    data: { content: guidesContent, basePath: 'guides', sectionLabel: 'Guides' },
     title: nodeDetailTitle
   }
 ];

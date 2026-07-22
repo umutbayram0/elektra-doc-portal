@@ -11,6 +11,12 @@
           "id": "primary-button",
           "title": "Primary Button",
           "description": "The main call-to-action button, styled with Angular Material's mat-button.",
+          "properties": [
+            { "name": "color", "type": "\"primary\" | \"accent\" | \"warn\"", "default": "\"primary\"", "description": "Material theme color applied to the button." },
+            { "name": "disabled", "type": "boolean", "default": "false", "description": "Disables the button and removes it from the tab order." },
+            { "name": "mat-flat-button", "type": "attribute", "description": "Filled variant, used for the primary action on a page." },
+            { "name": "mat-stroked-button", "type": "attribute", "description": "Outlined variant, used for secondary actions like Cancel." }
+          ],
           "example": "<button mat-flat-button color=\"primary\">Save changes</button>\n<button mat-stroked-button>Cancel</button>",
           "exampleLang": "html",
           "exampleFilename": "buttons.html"

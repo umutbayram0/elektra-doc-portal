@@ -1,3 +1,196 @@
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 48px;
+  align-items: start;
+}
+
+.detail-main {
+  min-width: 0;
+}
+
+.page-toc {
+  position: sticky;
+  top: 48px;
+  padding-left: 20px;
+  border-left: 1px solid var(--mat-sys-outline-variant);
+}
+
+.page-toc-title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.page-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-toc a {
+  color: var(--mat-sys-on-surface-variant);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.page-toc a:hover {
+  color: var(--mat-sys-primary);
+}
+
+.page-toc a:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-toc {
+    display: none;
+  }
+}
+
+h2 {
+  font: var(--mat-sys-title-large);
+  margin: 40px 0 16px;
+}
+
+.edit-link {
+  display: inline-block;
+  margin: 0 0 24px;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.edit-link:hover {
+  color: var(--mat-sys-primary);
+  text-decoration: underline;
+}
+
+.edit-link:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+}
+
+.callouts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+
+.callout {
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid;
+}
+
+.callout p {
+  margin: 4px 0 0;
+  color: var(--mat-sys-on-surface);
+}
+
+.callout-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.callout-tip {
+  background-color: rgb(129 199 132 / 0.12);
+  border-left-color: #81c784;
+  color: #a5d6a7;
+}
+
+.callout-note {
+  background-color: rgb(100 181 246 / 0.12);
+  border-left-color: #64b5f6;
+  color: #90caf9;
+}
+
+.callout-warning {
+  background-color: rgb(255 183 77 / 0.12);
+  border-left-color: #ffb74d;
+  color: #ffcc80;
+}
+
+.related-list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.related-list a {
+  color: var(--mat-sys-primary);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.related-list a:hover {
+  text-decoration: underline;
+}
+
+.related-list a:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+}
+
+.properties-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 32px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+}
+
+.properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.properties-table th,
+.properties-table td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  vertical-align: top;
+}
+
+.properties-table thead th {
+  background-color: var(--mat-sys-surface-container-high);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.properties-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.properties-table code {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12.5px;
+}
+
+.prop-default-empty {
+  color: var(--mat-sys-on-surface-variant);
+}
+
 .code-block {
   margin: 0 0 32px;
   max-width: 760px;
@@ -7,12 +200,37 @@
 }
 
 .code-block-header {
-  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
   background-color: #2d333b;
   color: #adbac7;
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.copy-button {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(173 186 199 / 0.3);
+  background: none;
+  color: #adbac7;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background-color: rgb(173 186 199 / 0.12);
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
 }
 
 .code-block-pre {

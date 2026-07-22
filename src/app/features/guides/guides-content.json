@@ -1,0 +1,39 @@
+{
+  "title": "Guides",
+  "description": "Task-oriented, step-by-step instructions for common jobs in this portal and in Elektraweb's Angular codebases.",
+  "cards": [
+    {
+      "id": "add-a-section",
+      "title": "How to Add a New Documentation Section",
+      "description": "Add a whole new top-level section (like Projects or Modules) without writing a new page component.",
+      "notes": [
+        {
+          "type": "tip",
+          "text": "Every section reuses the same two shared components — FeatureIndex for the section's landing page and NodeDetail for every nested card — so a new section is pure configuration, not new UI code."
+        }
+      ],
+      "example": "// my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];",
+      "exampleLang": "typescript",
+      "exampleFilename": "my-section.routes.ts",
+      "related": [{ "label": "Add Your First Doc Page", "path": "getting-started/add-a-page" }]
+    },
+    {
+      "id": "document-properties",
+      "title": "How to Document a Component's Inputs",
+      "description": "Use the properties field on a node to render an AG Grid-style reference table (name, type, default, description) instead of a plain paragraph.",
+      "example": "{\n  \"properties\": [\n    {\n      \"name\": \"color\",\n      \"type\": \"\\\"primary\\\" | \\\"accent\\\" | \\\"warn\\\"\",\n      \"default\": \"\\\"primary\\\"\",\n      \"description\": \"Material theme color applied to the button.\"\n    }\n  ]\n}",
+      "exampleLang": "json",
+      "exampleFilename": "components-content.json",
+      "related": [{ "label": "Primary Button", "path": "components/buttons/primary-button" }]
+    },
+    {
+      "id": "add-callouts",
+      "title": "How to Add Callouts and Related Links",
+      "description": "Use notes for inline Tip / Note / Warning callouts, and related for cross-links to other pages in a page's \"Related topics\" section.",
+      "example": "{\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"A guard returning false silently cancels navigation.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Dependency Injection\", \"path\": \"modules/authentication/dependency-injection\" }\n  ]\n}",
+      "exampleLang": "json",
+      "exampleFilename": "modules-content.json",
+      "related": [{ "label": "Route Guards", "path": "modules/authentication/route-guards" }]
+    }
+  ]
+}

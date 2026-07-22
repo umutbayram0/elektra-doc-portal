@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       The page you're looking for doesn't exist or may have been moved.
     </p>
 
-    <a routerLink="/overview">Back to Overview</a>
+    <a class="back-link" routerLink="/overview">&larr; Back to Overview</a>
   `,
   styleUrl: './content-page.css'
 })

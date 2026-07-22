@@ -9,6 +9,15 @@ export const routes: Routes = [
     loadChildren: () => import('./features/overview/overview.routes').then(m => m.OVERVIEW_ROUTES)
   },
   {
+    path: 'getting-started',
+    loadChildren: () =>
+      import('./features/getting-started/getting-started.routes').then(m => m.GETTING_STARTED_ROUTES)
+  },
+  {
+    path: 'guides',
+    loadChildren: () => import('./features/guides/guides.routes').then(m => m.GUIDES_ROUTES)
+  },
+  {
     path: 'projects',
     loadChildren: () => import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)
   },

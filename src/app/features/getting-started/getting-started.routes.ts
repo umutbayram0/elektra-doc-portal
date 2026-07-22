@@ -2,19 +2,19 @@ import { Routes } from '@angular/router';
 import { FeatureIndex } from '../../shared/feature-index';
 import { NodeDetail } from '../../shared/node-detail';
 import { nodeDetailTitle, pageTitle } from '../../shared/route-title';
-import apiContent from './api-content.json';
+import gettingStartedContent from './getting-started-content.json';
 
-export const API_ROUTES: Routes = [
+export const GETTING_STARTED_ROUTES: Routes = [
   {
     path: '',
     component: FeatureIndex,
-    data: { content: apiContent, basePath: 'api' },
-    title: pageTitle('API')
+    data: { content: gettingStartedContent, basePath: 'getting-started' },
+    title: pageTitle('Getting Started')
   },
   {
     path: '**',
     component: NodeDetail,
-    data: { content: apiContent, basePath: 'api', sectionLabel: 'API' },
+    data: { content: gettingStartedContent, basePath: 'getting-started', sectionLabel: 'Getting Started' },
     title: nodeDetailTitle
   }
 ];

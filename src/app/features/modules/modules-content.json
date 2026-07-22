@@ -11,9 +11,16 @@
           "id": "route-guards",
           "title": "Route Guards",
           "description": "Route guards check user permissions before a protected route loads.",
+          "notes": [
+            { "type": "tip", "text": "Prefer functional guards (CanActivateFn) over class-based guards — they support inject() directly and need no NgModule providers." },
+            { "type": "warning", "text": "A guard returning false silently cancels navigation. Redirect to a login or error route instead of returning false so the user isn't left on a blank screen." }
+          ],
           "example": "import { inject } from '@angular/core';\nimport { CanActivateFn } from '@angular/router';\nimport { AuthService } from './auth.service';\n\nexport const authGuard: CanActivateFn = (route, state) => {\n  const authService = inject(AuthService);\n  return authService.isAuthenticated();\n};",
           "exampleLang": "typescript",
-          "exampleFilename": "auth.guard.ts"
+          "exampleFilename": "auth.guard.ts",
+          "related": [
+            { "label": "Dependency Injection", "path": "modules/authentication/dependency-injection" }
+          ]
         },
         {
           "id": "dependency-injection",
@@ -21,7 +28,10 @@
           "description": "AuthService is provided at the root level so it can be injected into guards and components as a singleton.",
           "example": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class AuthService {\n  private readonly session = signal<string | null>(null);\n\n  isAuthenticated(): boolean {\n    return this.session() !== null;\n  }\n}",
           "exampleLang": "typescript",
-          "exampleFilename": "auth.service.ts"
+          "exampleFilename": "auth.service.ts",
+          "related": [
+            { "label": "Route Guards", "path": "modules/authentication/route-guards" }
+          ]
         }
       ]
     }

@@ -8,6 +8,8 @@ import { SearchBox } from './shared/search-box';
 import type { NavItem } from './shared/nav-item.model';
 import type { DocNode } from './shared/doc-node.model';
 
+import gettingStartedContent from './features/getting-started/getting-started-content.json';
+import guidesContent from './features/guides/guides-content.json';
 import projectsContent from './features/projects/projects-content.json';
 import modulesContent from './features/modules/modules-content.json';
 import componentsContent from './features/components/components-content.json';
@@ -33,11 +35,13 @@ export class App {
   private readonly router = inject(Router);
 
   readonly navSections: NavItem[] = [
-    section('Projects', 'projects', projectsContent.cards),
-    section('Modules', 'modules', modulesContent.cards),
-    section('Components', 'components', componentsContent.cards),
-    section('API', 'api', apiContent.cards),
-    section('Libraries', 'libraries', librariesContent.cards)
+    section('Getting Started', 'getting-started', gettingStartedContent.cards as DocNode[]),
+    section('Guides', 'guides', guidesContent.cards as DocNode[]),
+    section('Projects', 'projects', projectsContent.cards as DocNode[]),
+    section('Modules', 'modules', modulesContent.cards as DocNode[]),
+    section('Components', 'components', componentsContent.cards as DocNode[]),
+    section('API', 'api', apiContent.cards as DocNode[]),
+    section('Libraries', 'libraries', librariesContent.cards as DocNode[])
   ];
 
   private readonly currentUrl = toSignal(
@@ -48,11 +52,17 @@ export class App {
     { initialValue: this.router.url }
   );
 
-  private readonly activeAncestorKeys = computed(() => {
-    const segments = this.currentUrl()
+  private readonly urlSegments = computed(() =>
+    this.currentUrl()
       .split(/[?#]/)[0]
       .split('/')
-      .filter(Boolean);
+      .filter(Boolean)
+  );
+
+  readonly activeSection = computed(() => this.navSections.find(item => item.path === this.urlSegments()[0]));
+
+  private readonly activeAncestorKeys = computed(() => {
+    const segments = this.urlSegments();
     const keys = new Set<string>();
     const walk = (items: NavItem[]) => {
       for (const item of items) {

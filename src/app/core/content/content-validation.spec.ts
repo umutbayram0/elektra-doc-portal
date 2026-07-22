@@ -2,6 +2,10 @@ import { validateContent } from './validate-content';
 
 import overviewSchema from '../../features/overview/overview-content.schema.json';
 import overviewContent from '../../features/overview/overview-content.json';
+import gettingStartedSchema from '../../features/getting-started/getting-started-content.schema.json';
+import gettingStartedContent from '../../features/getting-started/getting-started-content.json';
+import guidesSchema from '../../features/guides/guides-content.schema.json';
+import guidesContent from '../../features/guides/guides-content.json';
 import projectsSchema from '../../features/projects/projects-content.schema.json';
 import projectsContent from '../../features/projects/projects-content.json';
 import modulesSchema from '../../features/modules/modules-content.schema.json';
@@ -16,6 +20,8 @@ import librariesContent from '../../features/libraries/libraries-content.json';
 describe('page content vs. JSON Schema', () => {
   const pages = [
     { name: 'overview', schema: overviewSchema, content: overviewContent },
+    { name: 'getting-started', schema: gettingStartedSchema, content: gettingStartedContent },
+    { name: 'guides', schema: guidesSchema, content: guidesContent },
     { name: 'projects', schema: projectsSchema, content: projectsContent },
     { name: 'modules', schema: modulesSchema, content: modulesContent },
     { name: 'components', schema: componentsSchema, content: componentsContent },

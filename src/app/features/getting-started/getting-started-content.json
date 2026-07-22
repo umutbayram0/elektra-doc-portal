@@ -1,0 +1,40 @@
+{
+  "title": "Getting Started",
+  "description": "The shortest path from a fresh clone to your first shipped documentation page.",
+  "cards": [
+    {
+      "id": "setup",
+      "title": "Set Up Your Environment",
+      "description": "Install dependencies and start the dev server. The app reloads automatically as you edit source files.",
+      "example": "npm install\nnpm start",
+      "exampleLang": "bash",
+      "exampleFilename": "terminal"
+    },
+    {
+      "id": "add-a-page",
+      "title": "Add Your First Doc Page",
+      "description": "Every section (Projects, Modules, Components, API, Libraries) is a JSON file of nested cards. Add a node with a unique id, title and description to the relevant *-content.json file to create a new page — no component code required.",
+      "notes": [
+        { "type": "tip", "text": "Nodes can nest arbitrarily deep via children. Each one gets its own real URL, e.g. /modules/authentication/route-guards." }
+      ],
+      "example": "{\n  \"id\": \"route-guards\",\n  \"title\": \"Route Guards\",\n  \"description\": \"Route guards check user permissions before a protected route loads.\"\n}",
+      "exampleLang": "json",
+      "exampleFilename": "modules-content.json",
+      "related": [{ "label": "How to Add a New Documentation Section", "path": "guides/add-a-section" }]
+    },
+    {
+      "id": "validate",
+      "title": "Validate and Test Your Change",
+      "description": "Run the test suite before opening a pull request. The schema validation spec catches structural mistakes — a missing id, an unknown field — before you even open the browser.",
+      "notes": [
+        {
+          "type": "warning",
+          "text": "additionalProperties is false in every content schema. A typo'd field name (e.g. descriptoin) fails validation instead of silently being ignored."
+        }
+      ],
+      "example": "npm test\nnpm run lint",
+      "exampleLang": "bash",
+      "exampleFilename": "terminal"
+    }
+  ]
+}

@@ -35,7 +35,7 @@ a:hover {
 
 a.active {
   color: var(--mat-sys-primary);
-  background-color: var(--mat-sys-primary-container);
+  background-color: color-mix(in srgb, var(--mat-sys-primary) 16%, transparent);
   border-left-color: var(--mat-sys-primary);
 }
 

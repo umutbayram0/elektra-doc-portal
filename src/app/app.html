@@ -23,8 +23,25 @@
 
     <app-search-box />
 
-    <p class="sidebar-title">Documentation</p>
-    <app-nav-list [items]="navSections" [expanded]="expanded()" (itemToggled)="toggle($event)" />
+    @if (activeSection(); as section) {
+      <a class="sidebar-back" routerLink="/overview">
+        <span aria-hidden="true">&larr;</span> All documentation
+      </a>
+      <a class="sidebar-title sidebar-section-link" [routerLink]="'/' + section.path">{{ section.label }}</a>
+      <app-nav-list [items]="section.children ?? []" [expanded]="expanded()" (itemToggled)="toggle($event)" />
+    } @else {
+      <p class="sidebar-title">Documentation</p>
+      <ul class="sidebar-root-list">
+        @for (item of navSections; track item.path) {
+          <li>
+            <a class="sidebar-root-link" [routerLink]="'/' + item.path">
+              {{ item.label }}
+              <span class="chevron" aria-hidden="true">&rsaquo;</span>
+            </a>
+          </li>
+        }
+      </ul>
+    }
   </aside>
 
   <main class="content" id="main-content" tabindex="-1">

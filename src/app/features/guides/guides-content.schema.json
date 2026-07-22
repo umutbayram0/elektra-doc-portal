@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://elektraweb.dev/schemas/projects-content.schema.json",
-  "title": "ProjectsContent",
+  "$id": "https://elektraweb.dev/schemas/guides-content.schema.json",
+  "title": "GuidesContent",
   "type": "object",
   "properties": {
     "title": {
