@@ -1,6 +1,6 @@
 # Elektra Doc Portal
 
-Elektraweb yazılımcıları için dokümantasyon portalı. Angular ile yapıldı.
+Elektraweb yazılımcıları için dokümantasyon portalı.
 
 
 ## Kurulum ve çalıştırma
