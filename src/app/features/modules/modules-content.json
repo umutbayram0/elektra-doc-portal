@@ -5,15 +5,15 @@
     {
       "id": "authentication",
       "title": "Authentication",
-      "description": "Login, session handling and permission checks shared across projects.",
+      "description": "Example module page for documenting login and permission logic.",
       "children": [
         {
           "id": "route-guards",
           "title": "Route Guards",
-          "description": "Route guards check user permissions before a protected route loads.",
+          "description": "A route guard checks a condition (e.g. is the user logged in) before a route is allowed to load.",
           "notes": [
-            { "type": "tip", "text": "Prefer functional guards (CanActivateFn) over class-based guards — they support inject() directly and need no NgModule providers." },
-            { "type": "warning", "text": "A guard returning false silently cancels navigation. Redirect to a login or error route instead of returning false so the user isn't left on a blank screen." }
+            { "type": "tip", "text": "Functional guards (CanActivateFn) need no NgModule providers — inject() just works." },
+            { "type": "warning", "text": "Returning false blocks navigation silently. Redirect to a login route instead of leaving a blank screen." }
           ],
           "example": "import { inject } from '@angular/core';\nimport { CanActivateFn } from '@angular/router';\nimport { AuthService } from './auth.service';\n\nexport const authGuard: CanActivateFn = (route, state) => {\n  const authService = inject(AuthService);\n  return authService.isAuthenticated();\n};",
           "exampleLang": "typescript",
@@ -25,7 +25,7 @@
         {
           "id": "dependency-injection",
           "title": "Dependency Injection",
-          "description": "AuthService is provided at the root level so it can be injected into guards and components as a singleton.",
+          "description": "A service registered with providedIn: 'root' becomes a singleton that can be injected into guards and components.",
           "example": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class AuthService {\n  private readonly session = signal<string | null>(null);\n\n  isAuthenticated(): boolean {\n    return this.session() !== null;\n  }\n}",
           "exampleLang": "typescript",
           "exampleFilename": "auth.service.ts",

@@ -90,9 +90,10 @@ h2 {
 }
 
 .callout {
-  padding: 14px 18px;
-  border-radius: 8px;
-  border-left: 3px solid;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 3px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container-high);
 }
 
 .callout p {
@@ -105,24 +106,19 @@ h2 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  color: var(--mat-sys-on-surface-variant);
 }
 
 .callout-tip {
-  background-color: rgb(129 199 132 / 0.12);
   border-left-color: #81c784;
-  color: #a5d6a7;
 }
 
 .callout-note {
-  background-color: rgb(100 181 246 / 0.12);
   border-left-color: #64b5f6;
-  color: #90caf9;
 }
 
 .callout-warning {
-  background-color: rgb(255 183 77 / 0.12);
   border-left-color: #ffb74d;
-  color: #ffcc80;
 }
 
 .related-list {

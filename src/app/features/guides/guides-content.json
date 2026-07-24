@@ -1,39 +1,40 @@
 {
   "title": "Guides",
-  "description": "Task-oriented, step-by-step instructions for common jobs in this portal and in Elektraweb's Angular codebases.",
+  "description": "Elektraweb dokümantasyon portalına yeni içerik eklerken izlenecek adım adım rehberler.",
   "cards": [
     {
-      "id": "add-a-section",
-      "title": "How to Add a New Documentation Section",
-      "description": "Add a whole new top-level section (like Projects or Modules) without writing a new page component.",
+      "id": "yeni-sayfa-ekleme",
+      "title": "Yeni Bir Doküman Sayfası Ekleme",
+      "description": "Var olan bir bölüme (Projects, Modules, Components, API, Libraries) yeni bir sayfa eklemek için component kodu yazmaya gerek yoktur; ilgili *-content.json dosyasına bir madde eklemek yeterlidir.",
       "notes": [
-        {
-          "type": "tip",
-          "text": "Every section reuses the same two shared components — FeatureIndex for the section's landing page and NodeDetail for every nested card — so a new section is pure configuration, not new UI code."
-        }
+        { "type": "tip", "text": "Zorunlu alanlar: id, title, description. Geri kalanı (example, notes, properties, related, children) isteğe bağlı." },
+        { "type": "warning", "text": "Yanlış yazılmış bir alan adı content.schema.json doğrulamasını kırar, npm test ile görürsün." }
+      ],
+      "example": "{\n  \"id\": \"yeni-sayfa\",\n  \"title\": \"Yeni Sayfa\",\n  \"description\": \"Bu sayfanın ne anlattığının kısa açıklaması.\"\n}",
+      "exampleLang": "json",
+      "exampleFilename": "modules-content.json",
+      "related": [{ "label": "İçerik Alanlarını Kullanma", "path": "guides/icerik-alanlari" }]
+    },
+    {
+      "id": "yeni-bolum-ekleme",
+      "title": "Yeni Bir Üst Düzey Bölüm Ekleme",
+      "description": "Projects veya Modules gibi tamamen yeni bir bölüm eklemek de aynı iki paylaşılan bileşeni (FeatureIndex ve NodeDetail) kullanır. Tek yapman gereken bir routes dosyası ve bir content.json dosyası oluşturmaktır.",
+      "notes": [
+        { "type": "tip", "text": "app.routes.ts ve app.ts > navSections'a eklemeyi unutma, yoksa sidebar'da görünmez." }
       ],
       "example": "// my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];",
       "exampleLang": "typescript",
       "exampleFilename": "my-section.routes.ts",
-      "related": [{ "label": "Add Your First Doc Page", "path": "getting-started/add-a-page" }]
+      "related": [{ "label": "Yeni Bir Doküman Sayfası Ekleme", "path": "guides/yeni-sayfa-ekleme" }]
     },
     {
-      "id": "document-properties",
-      "title": "How to Document a Component's Inputs",
-      "description": "Use the properties field on a node to render an AG Grid-style reference table (name, type, default, description) instead of a plain paragraph.",
-      "example": "{\n  \"properties\": [\n    {\n      \"name\": \"color\",\n      \"type\": \"\\\"primary\\\" | \\\"accent\\\" | \\\"warn\\\"\",\n      \"default\": \"\\\"primary\\\"\",\n      \"description\": \"Material theme color applied to the button.\"\n    }\n  ]\n}",
+      "id": "icerik-alanlari",
+      "title": "İçerik Alanlarını Kullanma: notes, properties, related",
+      "description": "Bir sayfaya sade bir açıklamanın ötesinde bilgi eklemek istediğinde üç opsiyonel alan var: notes bir ipucu/uyarı kutusu, properties bir referans tablosu, related ise diğer sayfalara çapraz bağlantı ekler.",
+      "example": "{\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"type değeri tip, warning veya note olmalı.\" }\n  ],\n  \"properties\": [\n    { \"name\": \"ornek\", \"type\": \"string\", \"description\": \"Bir tablo satırı örneği.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Yeni Bir Doküman Sayfası Ekleme\", \"path\": \"guides/yeni-sayfa-ekleme\" }\n  ]\n}",
       "exampleLang": "json",
-      "exampleFilename": "components-content.json",
-      "related": [{ "label": "Primary Button", "path": "components/buttons/primary-button" }]
-    },
-    {
-      "id": "add-callouts",
-      "title": "How to Add Callouts and Related Links",
-      "description": "Use notes for inline Tip / Note / Warning callouts, and related for cross-links to other pages in a page's \"Related topics\" section.",
-      "example": "{\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"A guard returning false silently cancels navigation.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Dependency Injection\", \"path\": \"modules/authentication/dependency-injection\" }\n  ]\n}",
-      "exampleLang": "json",
-      "exampleFilename": "modules-content.json",
-      "related": [{ "label": "Route Guards", "path": "modules/authentication/route-guards" }]
+      "exampleFilename": "example-content.json",
+      "related": [{ "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }]
     }
   ]
 }

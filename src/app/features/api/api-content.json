@@ -1,23 +1,23 @@
 {
   "title": "API",
-  "description": "Endpoint descriptions, request examples and response structures.",
+  "description": "Example page for documenting REST endpoints: request/response bodies, status codes and field-level references.",
   "cards": [
     {
       "id": "authentication-api",
       "title": "Authentication API",
-      "description": "Endpoints for login, token refresh and logout."
+      "description": "Placeholder page — this is where login/token endpoint documentation would go."
     },
     {
       "id": "users-api",
       "title": "Users API",
-      "description": "Endpoints for creating, updating and querying user records.",
+      "description": "Worked example of documenting a resource's endpoints.",
       "children": [
         {
           "id": "create-user",
           "title": "Create User",
           "description": "POST endpoint for creating a new user record.",
           "notes": [
-            { "type": "note", "text": "email must be unique across the system; a duplicate returns 409 Conflict instead of 201." }
+            { "type": "note", "text": "email must be unique — a duplicate returns 409 Conflict instead of 201." }
           ],
           "properties": [
             { "name": "email", "type": "string", "description": "The new user's email address. Required." },
@@ -47,7 +47,7 @@
     {
       "id": "reporting-api",
       "title": "Reporting API",
-      "description": "Endpoints for generating and exporting reports."
+      "description": "Placeholder page — this is where reporting/export endpoint documentation would go."
     }
   ]
 }

@@ -59,7 +59,7 @@ Cards are `DocNode`s (`src/app/shared/doc-node.model.ts`) and can nest arbitrari
 - its children as link-cards one level deeper, and a breadcrumb trail back up
 - an auto-generated "On this page" table of contents, built from whichever of the sections above are present
 
-See [Guides → How to Add a New Documentation Section](src/app/features/guides/guides-content.json) and [How to Document a Component's Inputs](src/app/features/guides/guides-content.json) for worked examples of each field.
+See [Guides](src/app/features/guides/guides-content.json) — "Yeni Bir Doküman Sayfası Ekleme" and "İçerik Alanlarını Kullanma: notes, properties, related" — for worked examples of each field.
 
 ### Adding a new doc page
 

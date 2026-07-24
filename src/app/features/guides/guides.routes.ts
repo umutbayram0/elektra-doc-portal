@@ -8,13 +8,13 @@ export const GUIDES_ROUTES: Routes = [
   {
     path: '',
     component: FeatureIndex,
-    data: { content: guidesContent, basePath: 'guides' },
+    data: { content: guidesContent, basePath: 'guides', lang: 'tr' },
     title: pageTitle('Guides')
   },
   {
     path: '**',
     component: NodeDetail,
-    data: { content: guidesContent, basePath: 'guides', sectionLabel: 'Guides' },
+    data: { content: guidesContent, basePath: 'guides', sectionLabel: 'Guides', lang: 'tr' },
     title: nodeDetailTitle
   }
 ];

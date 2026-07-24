@@ -5,35 +5,27 @@
     {
       "id": "web-apps",
       "title": "Web Applications",
-      "description": "Architecture, routing and build notes for Elektraweb's Angular web applications.",
+      "description": "Example page for documenting an Angular web application's structure.",
       "children": [
         {
           "id": "routing",
           "title": "Routing",
-          "description": "Feature areas are lazy-loaded using Angular's Router.",
+          "description": "This portal's own feature areas are lazy-loaded using Angular's Router — the example below is copied directly from this repo's app.routes.ts.",
           "example": "export const routes: Routes = [\n  {\n    path: 'projects',\n    loadChildren: () =>\n      import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)\n  }\n];",
           "exampleLang": "typescript",
           "exampleFilename": "app.routes.ts"
-        },
-        {
-          "id": "server-side-rendering",
-          "title": "Server-Side Rendering",
-          "description": "Renders the application on the server for a faster first paint and better SEO.",
-          "example": "import { bootstrapApplication } from '@angular/platform-browser';\nimport { provideClientHydration } from '@angular/platform-browser';\nimport { App } from './app/app';\n\nbootstrapApplication(App, {\n  providers: [provideClientHydration()]\n});",
-          "exampleLang": "typescript",
-          "exampleFilename": "main.ts"
         }
       ]
     },
     {
       "id": "mobile-apps",
       "title": "Mobile Applications",
-      "description": "Codebase structure and release process for Elektraweb's iOS and Android applications."
+      "description": "Placeholder page — this is where a real project's mobile app documentation would go."
     },
     {
       "id": "internal-tools",
       "title": "Internal Tools",
-      "description": "Internal dashboards and admin tools used by Elektraweb teams."
+      "description": "Placeholder page — this is where a real project's internal tooling documentation would go."
     }
   ]
 }

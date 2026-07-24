@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
@@ -61,6 +61,15 @@ export class App {
 
   readonly activeSection = computed(() => this.navSections.find(item => item.path === this.urlSegments()[0]));
 
+  readonly pageLang = computed(() => {
+    this.currentUrl();
+    let route = this.router.routerState.snapshot.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    return (route.data['lang'] as string | undefined) ?? 'en';
+  });
+
   private readonly activeAncestorKeys = computed(() => {
     const segments = this.urlSegments();
     const keys = new Set<string>();
@@ -89,6 +98,18 @@ export class App {
   private readonly closeMobileNavOnNavigation = effect(() => {
     this.currentUrl();
     this.mobileNavOpen.set(false);
+  });
+
+  private readonly mainContent = viewChild<ElementRef<HTMLElement>>('mainContent');
+  private isFirstNavigation = true;
+
+  private readonly focusMainOnNavigation = effect(() => {
+    this.currentUrl();
+    if (this.isFirstNavigation) {
+      this.isFirstNavigation = false;
+      return;
+    }
+    this.mainContent()?.nativeElement.focus();
   });
 
   toggle(item: NavItem): void {

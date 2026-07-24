@@ -44,7 +44,7 @@
     }
   </aside>
 
-  <main class="content" id="main-content" tabindex="-1">
+  <main class="content" id="main-content" tabindex="-1" #mainContent [attr.lang]="pageLang()">
     <router-outlet />
   </main>
 </div>

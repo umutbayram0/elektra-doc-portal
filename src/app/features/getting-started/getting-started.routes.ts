@@ -8,13 +8,13 @@ export const GETTING_STARTED_ROUTES: Routes = [
   {
     path: '',
     component: FeatureIndex,
-    data: { content: gettingStartedContent, basePath: 'getting-started' },
+    data: { content: gettingStartedContent, basePath: 'getting-started', lang: 'tr' },
     title: pageTitle('Getting Started')
   },
   {
     path: '**',
     component: NodeDetail,
-    data: { content: gettingStartedContent, basePath: 'getting-started', sectionLabel: 'Getting Started' },
+    data: { content: gettingStartedContent, basePath: 'getting-started', sectionLabel: 'Getting Started', lang: 'tr' },
     title: nodeDetailTitle
   }
 ];

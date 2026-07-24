@@ -1,36 +1,33 @@
 {
   "title": "Getting Started",
-  "description": "The shortest path from a fresh clone to your first shipped documentation page.",
+  "description": "Projeyi klonladıktan sonra ilk dokümantasyon sayfanı yayına almaya kadar giden en kısa yol.",
   "cards": [
     {
       "id": "setup",
-      "title": "Set Up Your Environment",
-      "description": "Install dependencies and start the dev server. The app reloads automatically as you edit source files.",
+      "title": "Ortamı Hazırlama",
+      "description": "Bağımlılıkları kur ve geliştirme sunucusunu başlat. Kaynak dosyalarda yaptığın değişiklikler otomatik olarak yansır.",
       "example": "npm install\nnpm start",
       "exampleLang": "bash",
       "exampleFilename": "terminal"
     },
     {
       "id": "add-a-page",
-      "title": "Add Your First Doc Page",
-      "description": "Every section (Projects, Modules, Components, API, Libraries) is a JSON file of nested cards. Add a node with a unique id, title and description to the relevant *-content.json file to create a new page — no component code required.",
+      "title": "İlk Doküman Sayfanı Ekle",
+      "description": "Her bölüm (Projects, Modules, Components, API, Libraries) iç içe kartlardan oluşan bir JSON dosyasıdır. İlgili *-content.json dosyasına benzersiz bir id, title ve description içeren bir madde eklemek yeni bir sayfa oluşturmak için yeterlidir — component kodu gerekmez.",
       "notes": [
-        { "type": "tip", "text": "Nodes can nest arbitrarily deep via children. Each one gets its own real URL, e.g. /modules/authentication/route-guards." }
+        { "type": "tip", "text": "children ile sayfalar istediğin kadar iç içe geçebilir. Her biri gerçek bir URL alır, örn. /modules/authentication/route-guards." }
       ],
       "example": "{\n  \"id\": \"route-guards\",\n  \"title\": \"Route Guards\",\n  \"description\": \"Route guards check user permissions before a protected route loads.\"\n}",
       "exampleLang": "json",
       "exampleFilename": "modules-content.json",
-      "related": [{ "label": "How to Add a New Documentation Section", "path": "guides/add-a-section" }]
+      "related": [{ "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }]
     },
     {
       "id": "validate",
-      "title": "Validate and Test Your Change",
-      "description": "Run the test suite before opening a pull request. The schema validation spec catches structural mistakes — a missing id, an unknown field — before you even open the browser.",
+      "title": "Değişikliğini Doğrula ve Test Et",
+      "description": "Pull request açmadan önce test paketini çalıştır. Şema doğrulama testi, eksik bir id ya da bilinmeyen bir alan gibi yapısal hataları sen daha tarayıcıyı açmadan yakalar.",
       "notes": [
-        {
-          "type": "warning",
-          "text": "additionalProperties is false in every content schema. A typo'd field name (e.g. descriptoin) fails validation instead of silently being ignored."
-        }
+        { "type": "warning", "text": "Her content şemasında additionalProperties false'tur. Yanlış yazılmış bir alan adı sessizce yok sayılmaz, doğrulama hatası verir." }
       ],
       "example": "npm test\nnpm run lint",
       "exampleLang": "bash",
