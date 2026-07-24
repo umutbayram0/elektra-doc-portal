@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# AI tooling
+.claude/
+
 # IDEs and editors
 .idea/
 .project
