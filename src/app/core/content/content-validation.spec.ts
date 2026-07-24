@@ -113,6 +113,79 @@ describe('page content vs. JSON Schema', () => {
     expect(result.valid).toBe(true);
     expect(result.errors).toEqual([]);
   });
+
+  it('accepts a card with a valid steps array', () => {
+    const ok = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [
+        {
+          id: 'has-steps',
+          title: 'Has Steps',
+          description: 'A card with steps.',
+          steps: ['First step.', 'Second step.']
+        }
+      ]
+    };
+
+    const result = validateContent(projectsSchema, ok);
+
+    expect(result.valid).toBe(true);
+    expect(result.errors).toEqual([]);
+  });
+
+  it('rejects an empty steps array', () => {
+    const broken = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [{ id: 'empty-steps', title: 'Empty Steps', description: 'No steps.', steps: [] }]
+    };
+
+    const result = validateContent(projectsSchema, broken);
+
+    expect(result.valid).toBe(false);
+    expect(result.errors.length).toBeGreaterThan(0);
+  });
+
+  it('rejects a steps array with a blank string', () => {
+    const broken = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [
+        {
+          id: 'blank-step',
+          title: 'Blank Step',
+          description: 'Has a blank step.',
+          steps: ['Valid step.', '']
+        }
+      ]
+    };
+
+    const result = validateContent(projectsSchema, broken);
+
+    expect(result.valid).toBe(false);
+    expect(result.errors.length).toBeGreaterThan(0);
+  });
+
+  it('rejects a steps array with a non-string item', () => {
+    const broken = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [
+        {
+          id: 'non-string-step',
+          title: 'Non-string Step',
+          description: 'Has a non-string step.',
+          steps: ['Valid step.', 42]
+        }
+      ]
+    };
+
+    const result = validateContent(projectsSchema, broken);
+
+    expect(result.valid).toBe(false);
+    expect(result.errors.length).toBeGreaterThan(0);
+  });
 });
 
 describe('real content semantic rules', () => {

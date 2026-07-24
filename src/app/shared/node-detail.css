@@ -86,6 +86,20 @@ h2 {
   outline-offset: 2px;
 }
 
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 0 32px;
+  padding-left: 24px;
+}
+
+.steps-list li {
+  padding-left: 4px;
+  line-height: 1.6;
+}
+
 .callouts {
   display: flex;
   flex-direction: column;

@@ -32,9 +32,9 @@ interface TocItem {
 }
 
 const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
-  tip: 'Tip',
-  warning: 'Warning',
-  note: 'Note'
+  tip: 'İpucu',
+  warning: 'Uyarı',
+  note: 'Not'
 };
 
 @Component({
@@ -51,6 +51,15 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
           <p class="page-description">
             {{ current.description }}
           </p>
+
+          @if (current.steps && current.steps.length > 0) {
+            <h2 id="steps">Adımlar</h2>
+            <ol class="steps-list">
+              @for (step of current.steps; track $index) {
+                <li>{{ step }}</li>
+              }
+            </ol>
+          }
 
           @if (current.notes && current.notes.length > 0) {
             <div class="callouts">
@@ -196,6 +205,9 @@ export class NodeDetail {
       return [];
     }
     const items: TocItem[] = [];
+    if (current.steps?.length) {
+      items.push({ id: 'steps', label: 'Adımlar' });
+    }
     if (current.example) {
       items.push({ id: 'example', label: 'Example' });
     }

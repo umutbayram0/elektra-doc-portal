@@ -19,6 +19,7 @@ export interface DocNode {
   id: string;
   title: string;
   description: string;
+  steps?: string[];
   example?: string;
   exampleLang?: string;
   exampleFilename?: string;

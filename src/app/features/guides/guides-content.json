@@ -24,26 +24,27 @@
     {
       "id": "yeni-bolum-ekleme",
       "title": "Yeni Bir Üst Düzey Bölüm Ekleme",
-      "description": "Projects veya Modules gibi yeni bir üst düzey bölüm eklemek birkaç dosya oluşturmayı ve bölümü merkezi section registry'ye kaydetmeyi gerektirir. Route'lar, sidebar ve arama bu tek registry'den beslenir.",
+      "description": "Projects veya Modules gibi yeni bir üst düzey bölüm eklemek birkaç dosya oluşturmayı ve bölümü section-registry.ts dosyasına kaydetmeyi gerektirir. Route'lar, sidebar ve arama hep bu tek kayıttan beslenir.",
+      "steps": [
+        "src/app/features/<bölüm>/ klasörünü oluştur.",
+        "<bölüm>-content.json dosyasını title, description ve boş bir cards dizisiyle oluştur.",
+        "<bölüm>-content.schema.json dosyasını mevcut bölümlerden birini örnek alarak oluştur.",
+        "<bölüm>.routes.ts dosyasını örnekteki yapıya göre oluştur.",
+        "Yeni bölümü section-registry.ts içindeki DOCUMENTATION_SECTIONS dizisine ekle.",
+        "İçerik ve şema çiftini content-validation.spec.ts içindeki pages dizisine ekle.",
+        "npm test, npm run lint ve npm run build komutlarını çalıştır."
+      ],
       "notes": [
         {
           "type": "tip",
-          "text": "1) src/app/features/<bölüm>/ klasörünü oluştur. 2) <bölüm>-content.json'ı ekle (title, description, cards: []). 3) <bölüm>-content.schema.json'ı başka bir bölümden kopyala. 4) <bölüm>.routes.ts dosyasını örnekteki gibi oluştur."
-        },
-        {
-          "type": "tip",
-          "text": "5) section-registry.ts'deki DOCUMENTATION_SECTIONS dizisine bölümü ekle — kaydı unutursan bölüm hiçbir yerde görünmez."
+          "text": "Yeni dosyaları sıfırdan hazırlamak yerine mevcut bir bölümün yapısını örnek alabilirsin."
         },
         {
           "type": "warning",
-          "text": "6) content-validation.spec.ts'deki pages dizisine content/schema çiftini ekle, yoksa şema doğrulaması o bölüm için çalışmaz."
-        },
-        {
-          "type": "warning",
-          "text": "7) npm test, npm run lint ve npm run build çalıştır."
+          "text": "Registry kaydı eksikse bölüm menüde ve aramada görünmez; doğrulama kaydı eksikse içerik şeması testlerde kontrol edilmez."
         }
       ],
-      "example": "// 1-4: src/app/features/my-section/my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];\n\n// 5: src/app/core/documentation/section-registry.ts — DOCUMENTATION_SECTIONS dizisine ekle\nimport mySectionContent from '../../features/my-section/my-section-content.json';\n// ...\n{\n  label: 'My Section',\n  basePath: 'my-section',\n  content: mySectionContent as SectionContent,\n  loadRoutes: () => import('../../features/my-section/my-section.routes').then(m => m.MY_SECTION_ROUTES)\n}",
+      "example": "// src/app/features/my-section/my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];\n\n// src/app/core/documentation/section-registry.ts\nimport mySectionContent from '../../features/my-section/my-section-content.json';\n// ...\n{\n  label: 'My Section',\n  basePath: 'my-section',\n  content: mySectionContent as SectionContent,\n  loadRoutes: () => import('../../features/my-section/my-section.routes').then(m => m.MY_SECTION_ROUTES)\n}",
       "exampleLang": "typescript",
       "exampleFilename": "my-section.routes.ts",
       "related": [

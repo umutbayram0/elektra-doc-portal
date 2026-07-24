@@ -9,6 +9,7 @@ const testCards: DocNode[] = [
     id: 'alpha',
     title: 'Alpha',
     description: 'Alpha description',
+    steps: ['First step.', 'Second step.', 'Third step.'],
     example: 'const x = 1;',
     exampleLang: 'typescript',
     notes: [
@@ -110,7 +111,7 @@ describe('NodeDetail', () => {
     expect((fixture.nativeElement as HTMLElement).textContent).toContain('Content not found.');
   });
 
-  it('renders notes, properties, related links and TOC', async () => {
+  it('renders steps, notes, properties, related links and TOC', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/alpha');
@@ -119,7 +120,15 @@ describe('NodeDetail', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
 
+    const stepItems = Array.from(compiled.querySelectorAll('.steps-list li')).map(el =>
+      el.textContent?.trim()
+    );
+    expect(stepItems).toEqual(['First step.', 'Second step.', 'Third step.']);
+    expect(compiled.querySelector('.steps-list')?.tagName).toBe('OL');
+
+    expect(compiled.querySelector('.callout-tip .callout-label')?.textContent).toBe('İpucu');
     expect(compiled.querySelector('.callout-tip')?.textContent).toContain('A helpful tip.');
+    expect(compiled.querySelector('.callout-warning .callout-label')?.textContent).toBe('Uyarı');
     expect(compiled.querySelector('.callout-warning')?.textContent).toContain(
       'A cautionary warning.'
     );
@@ -137,7 +146,13 @@ describe('NodeDetail', () => {
     const tocLabels = Array.from(compiled.querySelectorAll('.page-toc ul a')).map(el =>
       el.textContent?.trim()
     );
-    expect(tocLabels).toEqual(['Example', 'Properties', 'In this section', 'Related topics']);
+    expect(tocLabels).toEqual([
+      'Adımlar',
+      'Example',
+      'Properties',
+      'In this section',
+      'Related topics'
+    ]);
   });
 
   it('renders an example with an unrecognized exampleLang as plain text, without throwing', async () => {
