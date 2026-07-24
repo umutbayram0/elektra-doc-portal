@@ -1,8 +1,7 @@
 # Elektra Doc Portal
 
-Elektraweb mühendisleri için iç dokümantasyon portalı. Angular (standalone components, signals, zoneless) ve Angular Material ile yapıldı.
+Elektraweb yazılımcıları için dokümantasyon portalı. Angular ile yapıldı.
 
-Navigasyon [Diátaxis](https://diataxis.fr/) dört doküman tipine göre organize edildi: Getting Started (tutorial), Guides (how-to), Projects/Modules/Components/API/Libraries (reference).
 
 ## Kurulum ve çalıştırma
 
@@ -36,7 +35,7 @@ Her doküman bölümü (`Getting Started`, `Guides`, `Projects`, `Modules`, `Com
 - `<bölüm>-content.schema.json` — içeriğin uyması gereken JSON Schema
 - `<bölüm>.routes.ts` — index sayfası ve nested node'lar için wildcard route
 
-Kartlar (`DocNode`, bkz. `src/app/shared/doc-node.model.ts`) `children` ile iç içe geçebilir, her node kendi URL'ine sahip olur (örn. `/modules/authentication/route-guards`).
+Kartlar (`DocNode`, bkz. `src/app/shared/doc-node.model.ts`) `children` ile iç içe geçebilir, her node kendi URL'sine sahip olur (örn. `/modules/authentication/route-guards`).
 
 Yeni bir sayfa eklemek için ilgili `-content.json` dosyasına bir node ekleyip `npm test` çalıştırmak yeterli — schema validasyonu eksik alanları yakalar.
 
