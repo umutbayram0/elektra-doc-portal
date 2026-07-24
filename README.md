@@ -2,8 +2,6 @@
 
 Elektraweb için Angular ile geliştirilen bir teknik dokümantasyon portalı. Sidebar, arama, iç içe sayfalar ve JSON tabanlı içerik yönetimi içerir.
 
-Projects, Modules, Components, API ve Libraries bölümleri şu an boş — her ekip kendi dokümantasyonunu buraya ekleyecek.
-
 ## Gereksinimler ve kurulum
 
 Node.js `24.15.0` (bkz. `.nvmrc`).
