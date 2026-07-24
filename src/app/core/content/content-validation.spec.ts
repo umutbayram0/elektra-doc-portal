@@ -35,7 +35,7 @@ describe('page content vs. JSON Schema', () => {
     expect(result.valid).toBe(true);
   });
 
-  it('rejects a card missing the required "id" field', () => {
+  it('rejects a card without an id', () => {
     const broken = {
       title: 'Overview',
       description: 'General information about documentation portal.',
@@ -48,7 +48,7 @@ describe('page content vs. JSON Schema', () => {
     expect(result.errors.length).toBeGreaterThan(0);
   });
 
-  it('rejects a card with an unknown extra field', () => {
+  it('rejects an unknown field', () => {
     const broken = {
       title: 'Overview',
       description: 'General information about documentation portal.',
@@ -61,7 +61,7 @@ describe('page content vs. JSON Schema', () => {
     expect(result.errors.length).toBeGreaterThan(0);
   });
 
-  it('rejects a nested child missing its required "id" field (recursion is enforced at any depth)', () => {
+  it('rejects a nested child without an id', () => {
     const broken = {
       title: 'Components',
       description: 'Frontend component usage, inputs, outputs and code examples.',

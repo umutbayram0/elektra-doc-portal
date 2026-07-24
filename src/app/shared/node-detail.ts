@@ -50,10 +50,6 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
             {{ current.description }}
           </p>
 
-          @if (editHref(); as href) {
-            <a class="edit-link" [href]="href" target="_blank" rel="noopener">Edit this page on GitHub</a>
-          }
-
           @if (current.notes && current.notes.length > 0) {
             <div class="callouts">
               @for (note of current.notes; track $index) {
@@ -129,14 +125,19 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
           }
         </div>
 
-        @if (tocItems().length > 0) {
+        @if (tocItems().length > 0 || editHref()) {
           <nav class="page-toc" aria-label="On this page">
-            <p class="page-toc-title">On this page</p>
-            <ul>
-              @for (item of tocItems(); track item.id) {
-                <li><a [href]="'#' + item.id">{{ item.label }}</a></li>
-              }
-            </ul>
+            @if (tocItems().length > 0) {
+              <p class="page-toc-title">On this page</p>
+              <ul>
+                @for (item of tocItems(); track item.id) {
+                  <li><a [href]="'#' + item.id">{{ item.label }}</a></li>
+                }
+              </ul>
+            }
+            @if (editHref(); as href) {
+              <a class="edit-link" [href]="href" target="_blank" rel="noopener">Edit this page on GitHub</a>
+            }
           </nav>
         }
       </div>

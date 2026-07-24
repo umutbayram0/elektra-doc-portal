@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { NotFound } from './not-found';
 
 describe('NotFound', () => {
-  it('renders a heading and a link back to Overview', async () => {
+  it('renders heading and back link', async () => {
     await TestBed.configureTestingModule({
       providers: [provideRouter([])]
     }).compileComponents();

@@ -9,7 +9,7 @@ describe('Breadcrumbs', () => {
     }).compileComponents();
   });
 
-  it('renders every item but the last as a link, and the last as the current page', async () => {
+  it('renders links except the last item', async () => {
     const fixture = TestBed.createComponent(Breadcrumbs);
     fixture.componentRef.setInput('items', [
       { label: 'Modules', path: 'modules' },

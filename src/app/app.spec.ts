@@ -27,7 +27,7 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Overview');
   });
 
-  it('shows every top-level section and no back link at the root (e.g. Overview)', async () => {
+  it('shows all sections at root', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/overview');
@@ -50,7 +50,7 @@ describe('App', () => {
     ]);
   });
 
-  it('drills into a section: sidebar shows only that section plus a back link', async () => {
+  it('drills into a section in the sidebar', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/modules/authentication/route-guards');

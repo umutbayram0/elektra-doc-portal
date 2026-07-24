@@ -9,7 +9,7 @@ describe('NodeTile', () => {
     }).compileComponents();
   });
 
-  it('renders the title, description and links to the given path', async () => {
+  it('renders title, description and link', async () => {
     const fixture = TestBed.createComponent(NodeTile);
     fixture.componentRef.setInput('title', 'Route Guards');
     fixture.componentRef.setInput('description', 'Guards description');

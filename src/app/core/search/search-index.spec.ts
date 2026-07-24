@@ -2,7 +2,7 @@ import { buildSearchIndex } from './search-index';
 import type { DocNode } from '../../shared/doc-node.model';
 
 describe('buildSearchIndex', () => {
-  it('flattens nested nodes into search items with full paths and section labels', () => {
+  it('flattens nested nodes into search items', () => {
     const nodes: DocNode[] = [
       {
         id: 'auth',
@@ -20,7 +20,7 @@ describe('buildSearchIndex', () => {
     ]);
   });
 
-  it('returns an empty array for a section with no nodes', () => {
+  it('handles a section with no nodes', () => {
     expect(buildSearchIndex([{ label: 'Overview', basePath: 'overview', nodes: [] }])).toEqual([]);
   });
 });

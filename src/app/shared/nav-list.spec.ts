@@ -19,7 +19,7 @@ describe('NavList', () => {
     }).compileComponents();
   });
 
-  it('renders top-level items and hides children until expanded', async () => {
+  it('hides children until expanded', async () => {
     const fixture = TestBed.createComponent(NavList);
     fixture.componentRef.setInput('items', items);
     fixture.componentRef.setInput('expanded', new Set<string>());
@@ -33,7 +33,7 @@ describe('NavList', () => {
     expect(compiled.querySelector('.nav-toggle')?.getAttribute('aria-expanded')).toBe('false');
   });
 
-  it('shows children and flips aria-expanded when the section is expanded', async () => {
+  it('shows children when expanded', async () => {
     const fixture = TestBed.createComponent(NavList);
     fixture.componentRef.setInput('items', items);
     fixture.componentRef.setInput('expanded', new Set(['modules']));

@@ -47,7 +47,7 @@ describe('NodeDetail', () => {
     }).compileComponents();
   });
 
-  it('renders the matched node title, description and code example', async () => {
+  it('renders node title and code example', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/alpha');
@@ -60,7 +60,7 @@ describe('NodeDetail', () => {
     expect(compiled.querySelector('code')?.textContent).toContain('const x = 1;');
   });
 
-  it('renders a breadcrumb trail for a nested node', async () => {
+  it('renders breadcrumb trail', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/alpha/beta');
@@ -74,7 +74,7 @@ describe('NodeDetail', () => {
     expect(crumbs).toEqual(['Test', 'Alpha', 'Beta']);
   });
 
-  it('renders child nodes as tiles linking one level deeper', async () => {
+  it('renders child tiles', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/alpha');
@@ -86,7 +86,7 @@ describe('NodeDetail', () => {
     expect(tileLink.getAttribute('href')).toBe('/test/alpha/beta');
   });
 
-  it('shows "Content not found." for an unknown path', async () => {
+  it('shows not-found for an unknown path', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/does-not-exist');
@@ -96,7 +96,7 @@ describe('NodeDetail', () => {
     expect((fixture.nativeElement as HTMLElement).textContent).toContain('Content not found.');
   });
 
-  it('renders notes, a properties table, related links and a matching "on this page" TOC', async () => {
+  it('renders notes, properties, related links and TOC', async () => {
     const fixture = TestBed.createComponent(TestHost);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/test/alpha');
@@ -118,11 +118,11 @@ describe('NodeDetail', () => {
     expect(relatedLink.textContent).toContain('Beta');
     expect(relatedLink.getAttribute('href')).toBe('/test/alpha/beta');
 
-    const tocLabels = Array.from(compiled.querySelectorAll('.page-toc a')).map(el => el.textContent?.trim());
+    const tocLabels = Array.from(compiled.querySelectorAll('.page-toc ul a')).map(el => el.textContent?.trim());
     expect(tocLabels).toEqual(['Example', 'Properties', 'In this section', 'Related topics']);
   });
 
-  it('copies the code example to the clipboard and shows confirmation', async () => {
+  it('copies example to clipboard', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     Object.assign(navigator, { clipboard: { writeText } });
 

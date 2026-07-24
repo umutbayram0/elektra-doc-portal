@@ -15,7 +15,7 @@ describe('SearchService', () => {
     expect(results.some(result => result.title === 'Route Guards')).toBe(true);
   });
 
-  it('returns an empty array for a query with no matches', () => {
+  it('returns nothing for an unmatched query', () => {
     const service = new SearchService();
     service.query.set('zzzznonexistent');
     expect(service.results()).toEqual([]);

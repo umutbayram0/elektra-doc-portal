@@ -65,10 +65,15 @@ h2 {
 
 .edit-link {
   display: inline-block;
-  margin: 0 0 24px;
+  margin-top: 16px;
   color: var(--mat-sys-on-surface-variant);
   font-size: 13px;
   text-decoration: none;
+}
+
+.page-toc ul + .edit-link {
+  padding-top: 16px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
 }
 
 .edit-link:hover {

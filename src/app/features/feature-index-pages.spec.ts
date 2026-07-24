@@ -19,7 +19,7 @@ interface PageContent {
 }
 
 describe('Overview page', () => {
-  it('renders its title, description and top-level cards', async () => {
+  it('renders title and cards', async () => {
     await TestBed.configureTestingModule({
       providers: [provideRouter([])]
     }).compileComponents();
@@ -49,7 +49,7 @@ describe('FeatureIndex', () => {
     { name: 'Libraries', basePath: 'libraries', content: librariesContent }
   ];
 
-  it.each(sections)('$name renders its title, description and top-level cards', async ({ basePath, content }) => {
+  it.each(sections)('$name renders title and cards', async ({ basePath, content }) => {
     await TestBed.configureTestingModule({
       providers: [
         provideRouter([]),

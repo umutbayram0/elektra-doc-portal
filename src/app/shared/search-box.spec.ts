@@ -20,7 +20,7 @@ describe('SearchBox', () => {
     }).compileComponents();
   });
 
-  it('opens the search dialog when the trigger button is clicked', async () => {
+  it('opens dialog on trigger click', async () => {
     const fixture = TestBed.createComponent(SearchBox);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -36,7 +36,7 @@ describe('SearchBox', () => {
     expect(dialog.open).toBe(true);
   });
 
-  it('opens the dialog on Ctrl+K from anywhere in the document', async () => {
+  it('opens dialog on Ctrl+K', async () => {
     const fixture = TestBed.createComponent(SearchBox);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -49,7 +49,7 @@ describe('SearchBox', () => {
     expect(dialog.open).toBe(true);
   });
 
-  it('shows matching results while typing and clears the query once the dialog closes', async () => {
+  it('shows results while typing, clears on close', async () => {
     const fixture = TestBed.createComponent(SearchBox);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -75,7 +75,7 @@ describe('SearchBox', () => {
     expect(input.value).toBe('');
   });
 
-  it('shows a "no results" message for an unmatched query', async () => {
+  it('shows a no-results message', async () => {
     const fixture = TestBed.createComponent(SearchBox);
     fixture.detectChanges();
     await fixture.whenStable();
