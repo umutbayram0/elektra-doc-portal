@@ -25,11 +25,8 @@ import type { SectionContent } from './section-content.model';
       </section>
     } @else {
       <div class="empty-state">
-        <p>
-          No documentation has been added to this section yet. That's expected — this is not a bug.
-          Content here should be added by the Elektraweb team members who own the relevant project.
-        </p>
-        <a routerLink="/guides/yeni-sayfa-ekleme">How to add a new documentation page &rarr;</a>
+        <p>No documentation has been added to this section yet.</p>
+        <a routerLink="/guides/yeni-sayfa-ekleme">See the guide to add a new page &rarr;</a>
       </div>
     }
   `,

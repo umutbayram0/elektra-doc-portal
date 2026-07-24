@@ -13,7 +13,7 @@
     {
       "id": "add-a-page",
       "title": "İlk Doküman Sayfanı Ekle",
-      "description": "Her bölüm (Projects, Modules, Components, API, Libraries) iç içe kartlardan oluşan bir JSON dosyasıdır. İlgili *-content.json dosyasına benzersiz bir id, title ve description içeren bir madde eklemek yeni bir sayfa oluşturmak için yeterlidir — component kodu gerekmez.",
+      "description": "Her bölüm, iç içe kartlardan oluşan bir JSON dosyasıdır. İlgili *-content.json'a id/title/description içeren bir madde eklemek yeni sayfa için yeterli — component kodu gerekmez.",
       "notes": [
         {
           "type": "tip",

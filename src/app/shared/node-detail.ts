@@ -226,8 +226,7 @@ export class NodeDetail {
       : 'code-block-code';
     code.textContent = current.example;
     delete code.dataset['highlighted'];
-    // Unregistered/unknown exampleLang values are shown as plain text instead of
-    // being passed to hljs, so unexpected content never breaks page rendering.
+    // Unknown exampleLang falls back to plain text instead of being passed to hljs.
     if (isKnownLang) {
       hljs.highlightElement(code);
     }

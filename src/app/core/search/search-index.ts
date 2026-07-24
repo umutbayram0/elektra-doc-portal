@@ -29,10 +29,7 @@ export interface SearchRootSection {
   description: string;
 }
 
-/**
- * One search item per section's own index page, so searching "API" or
- * "Components" finds the section root even when it has no cards yet.
- */
+// So an empty section is still findable by search, via its own index page.
 export function buildSectionRootItems(sections: SearchRootSection[]): SearchItem[] {
   return sections.map(section => ({
     title: section.label,

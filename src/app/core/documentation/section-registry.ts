@@ -13,22 +13,15 @@ export interface DocumentationSection {
   readonly label: string;
   readonly basePath: string;
   readonly content: SectionContent;
-  readonly lang?: string;
   readonly loadRoutes: () => Promise<Routes>;
 }
 
-/**
- * Single source of truth for every top-level documentation section.
- * app.routes.ts, the sidebar (app.ts), search.service.ts and the Overview
- * page all read from this list — add a section here once and it shows up
- * everywhere.
- */
+// Single source of truth — add a section here once and it appears everywhere (routes, sidebar, search, Overview).
 export const DOCUMENTATION_SECTIONS: readonly DocumentationSection[] = [
   {
     label: 'Getting Started',
     basePath: 'getting-started',
     content: gettingStartedContent as SectionContent,
-    lang: 'tr',
     loadRoutes: () =>
       import('../../features/getting-started/getting-started.routes').then(
         m => m.GETTING_STARTED_ROUTES
@@ -38,7 +31,6 @@ export const DOCUMENTATION_SECTIONS: readonly DocumentationSection[] = [
     label: 'Guides',
     basePath: 'guides',
     content: guidesContent as SectionContent,
-    lang: 'tr',
     loadRoutes: () => import('../../features/guides/guides.routes').then(m => m.GUIDES_ROUTES)
   },
   {

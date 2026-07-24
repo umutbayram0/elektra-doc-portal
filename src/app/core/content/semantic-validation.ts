@@ -1,12 +1,7 @@
 import { findNodePath } from '../../shared/find-node-path';
 import type { DocNode } from '../../shared/doc-node.model';
 
-/**
- * JSON Schema (via `pattern`) already enforces that every `id` is a
- * non-empty route-safe slug. These checks cover the cross-item rules a
- * per-item schema can't express: sibling ids must be unique, and every
- * `related` link must actually resolve to a real node.
- */
+// The id slug format is enforced by JSON Schema; this covers the cross-item rules schema can't.
 export function findDuplicateSiblingIds(nodes: DocNode[], parentLabel = 'top level'): string[] {
   const errors: string[] = [];
   const seen = new Set<string>();

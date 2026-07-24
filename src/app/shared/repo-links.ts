@@ -1,8 +1,4 @@
-/**
- * Base "edit" URL of the GitHub repo's features folder — uses /edit/main/
- * (not /blob/main/) so the link opens GitHub's editor directly.
- * Leave empty to hide every "Edit this page" link.
- */
+// /edit/main/, not /blob/main/, so this opens GitHub's editor. Leave empty to hide the link.
 export const REPO_EDIT_BASE_URL =
   'https://github.com/umutbayram0/elektra-doc-portal/edit/main/src/app/features';
 
