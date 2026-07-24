@@ -1,16 +1,16 @@
 {
   "title": "API",
-  "description": "Example page for documenting REST endpoints: request/response bodies, status codes and field-level references.",
+  "description": "REST endpoint reference: request/response bodies, status codes and field-level docs.",
   "cards": [
     {
       "id": "authentication-api",
       "title": "Authentication API",
-      "description": "Placeholder page — this is where login/token endpoint documentation would go."
+      "description": "TODO: document login/token endpoints."
     },
     {
       "id": "users-api",
       "title": "Users API",
-      "description": "Worked example of documenting a resource's endpoints.",
+      "description": "Create and update endpoints for the user resource.",
       "children": [
         {
           "id": "create-user",
@@ -47,7 +47,7 @@
     {
       "id": "reporting-api",
       "title": "Reporting API",
-      "description": "Placeholder page — this is where reporting/export endpoint documentation would go."
+      "description": "TODO: document reporting/export endpoints."
     }
   ]
 }

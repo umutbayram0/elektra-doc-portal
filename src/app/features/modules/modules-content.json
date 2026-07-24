@@ -5,7 +5,7 @@
     {
       "id": "authentication",
       "title": "Authentication",
-      "description": "Example module page for documenting login and permission logic.",
+      "description": "Login and permission logic for this module.",
       "children": [
         {
           "id": "route-guards",

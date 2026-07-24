@@ -5,7 +5,7 @@
     {
       "id": "web-apps",
       "title": "Web Applications",
-      "description": "Example page for documenting an Angular web application's structure.",
+      "description": "How this portal's own Angular app is structured.",
       "children": [
         {
           "id": "routing",
@@ -20,12 +20,12 @@
     {
       "id": "mobile-apps",
       "title": "Mobile Applications",
-      "description": "Placeholder page — this is where a real project's mobile app documentation would go."
+      "description": "TODO: document the mobile app."
     },
     {
       "id": "internal-tools",
       "title": "Internal Tools",
-      "description": "Placeholder page — this is where a real project's internal tooling documentation would go."
+      "description": "TODO: document internal tools."
     }
   ]
 }

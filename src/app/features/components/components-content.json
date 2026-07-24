@@ -5,7 +5,7 @@
     {
       "id": "buttons",
       "title": "Buttons",
-      "description": "Example page for documenting button variants and usage guidelines.",
+      "description": "Button variants and usage guidelines.",
       "children": [
         {
           "id": "primary-button",
@@ -26,12 +26,12 @@
     {
       "id": "forms",
       "title": "Forms",
-      "description": "Placeholder page — this is where reusable form component documentation would go."
+      "description": "TODO: document form components."
     },
     {
       "id": "data-tables",
       "title": "Data Tables",
-      "description": "Placeholder page — this is where sortable/filterable table component documentation would go."
+      "description": "TODO: document sortable/filterable tables."
     }
   ]
 }
