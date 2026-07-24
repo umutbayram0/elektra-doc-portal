@@ -32,7 +32,7 @@ npm run build
 
 Var olan bir bölüme sayfa eklemek için ilgili `*-content.json` dosyasına bir node ekle. Zorunlu alanlar: `id`, `title`, `description`. Ekledikten sonra `npm test` çalıştır — şema doğrulaması eksik ya da yanlış alanları yakalar.
 
-Yeni bir üst düzey bölüm eklemek ya da `notes`/`properties`/`related` gibi içerik alanlarını nasıl kullanacağını görmek için uygulama içindeki **Getting Started** ve **Guides** bölümlerine bak.
+Yeni bir üst düzey bölüm eklemek ya da `steps`/`notes`/`properties`/`related` gibi içerik alanlarını nasıl kullanacağını görmek için uygulama içindeki **Getting Started** ve **Guides** bölümlerine bak.
 
 ## Kontrol komutları
 

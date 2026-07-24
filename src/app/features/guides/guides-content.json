@@ -9,7 +9,7 @@
       "notes": [
         {
           "type": "tip",
-          "text": "Zorunlu alanlar: id, title, description. Geri kalanı (example, notes, properties, related, children) isteğe bağlı."
+          "text": "Zorunlu alanlar: id, title, description. Geri kalanı (steps, example, notes, properties, related, children) isteğe bağlı."
         },
         {
           "type": "warning",
@@ -53,9 +53,9 @@
     },
     {
       "id": "icerik-alanlari",
-      "title": "İçerik Alanlarını Kullanma: notes, properties, related",
-      "description": "Bir sayfaya sade bir açıklamanın ötesinde bilgi eklemek istediğinde üç opsiyonel alan var: notes bir ipucu/uyarı kutusu, properties bir referans tablosu, related ise diğer sayfalara çapraz bağlantı ekler.",
-      "example": "{\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"type değeri tip, warning veya note olmalı.\" }\n  ],\n  \"properties\": [\n    { \"name\": \"ornek\", \"type\": \"string\", \"description\": \"Bir tablo satırı örneği.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Yeni Bir Doküman Sayfası Ekleme\", \"path\": \"guides/yeni-sayfa-ekleme\" }\n  ]\n}",
+      "title": "İçerik Alanlarını Kullanma: steps, notes, properties, related",
+      "description": "Bir sayfaya sade bir açıklamanın ötesinde bilgi eklemek istediğinde dört opsiyonel alan var: steps sıralı işlem adımlarını gösterir, notes bir ipucu/uyarı kutusu, properties bir referans tablosu, related ise diğer sayfalara çapraz bağlantı ekler.",
+      "example": "{\n  \"steps\": [\n    \"Yapılacak ilk işlemi kısa bir cümleyle yaz.\",\n    \"Ardından gelen adımı aynı şekilde ekle.\"\n  ],\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"type değeri tip, warning veya note olmalı.\" }\n  ],\n  \"properties\": [\n    { \"name\": \"ornek\", \"type\": \"string\", \"description\": \"Bir tablo satırı örneği.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Yeni Bir Doküman Sayfası Ekleme\", \"path\": \"guides/yeni-sayfa-ekleme\" }\n  ]\n}",
       "exampleLang": "json",
       "exampleFilename": "example-content.json",
       "related": [

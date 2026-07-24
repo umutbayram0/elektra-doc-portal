@@ -14,7 +14,8 @@ const testCards: DocNode[] = [
     exampleLang: 'typescript',
     notes: [
       { type: 'tip', text: 'A helpful tip.' },
-      { type: 'warning', text: 'A cautionary warning.' }
+      { type: 'warning', text: 'A cautionary warning.' },
+      { type: 'note', text: 'A plain note.' }
     ],
     properties: [
       {
@@ -132,6 +133,8 @@ describe('NodeDetail', () => {
     expect(compiled.querySelector('.callout-warning')?.textContent).toContain(
       'A cautionary warning.'
     );
+    expect(compiled.querySelector('.callout-note .callout-label')?.textContent).toBe('Not');
+    expect(compiled.querySelector('.callout-note')?.textContent).toContain('A plain note.');
 
     const propertyRows = Array.from(compiled.querySelectorAll('.properties-table tbody tr'));
     expect(propertyRows.length).toBe(2);
