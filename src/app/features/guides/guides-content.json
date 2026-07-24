@@ -7,8 +7,14 @@
       "title": "Yeni Bir Doküman Sayfası Ekleme",
       "description": "Var olan bir bölüme (Projects, Modules, Components, API, Libraries) yeni bir sayfa eklemek için component kodu yazmaya gerek yoktur; ilgili *-content.json dosyasına bir madde eklemek yeterlidir.",
       "notes": [
-        { "type": "tip", "text": "Zorunlu alanlar: id, title, description. Geri kalanı (example, notes, properties, related, children) isteğe bağlı." },
-        { "type": "warning", "text": "Yanlış yazılmış bir alan adı content.schema.json doğrulamasını kırar, npm test ile görürsün." }
+        {
+          "type": "tip",
+          "text": "Zorunlu alanlar: id, title, description. Geri kalanı (example, notes, properties, related, children) isteğe bağlı."
+        },
+        {
+          "type": "warning",
+          "text": "Yanlış yazılmış bir alan adı content.schema.json doğrulamasını kırar, npm test ile görürsün."
+        }
       ],
       "example": "{\n  \"id\": \"yeni-sayfa\",\n  \"title\": \"Yeni Sayfa\",\n  \"description\": \"Bu sayfanın ne anlattığının kısa açıklaması.\"\n}",
       "exampleLang": "json",
@@ -18,14 +24,31 @@
     {
       "id": "yeni-bolum-ekleme",
       "title": "Yeni Bir Üst Düzey Bölüm Ekleme",
-      "description": "Projects veya Modules gibi tamamen yeni bir bölüm eklemek de aynı iki paylaşılan bileşeni (FeatureIndex ve NodeDetail) kullanır. Tek yapman gereken bir routes dosyası ve bir content.json dosyası oluşturmaktır.",
+      "description": "Projects veya Modules gibi tamamen yeni bir üst düzey bölüm eklemek birkaç dosya oluşturmayı ve bölümü merkezi section registry'ye kaydetmeyi gerektirir. Bütün route'lar, sidebar ve arama bu tek registry'den beslenir; kaydı unutursan bölüm hiçbir yerde görünmez.",
       "notes": [
-        { "type": "tip", "text": "app.routes.ts ve app.ts > navSections'a eklemeyi unutma, yoksa sidebar'da görünmez." }
+        {
+          "type": "tip",
+          "text": "1) src/app/features/<bölüm>/ klasörünü oluştur. 2) <bölüm>-content.json'ı ekle (title, description, cards: []). 3) <bölüm>-content.schema.json'ı diğer bölümlerden kopyalayıp $id/title alanlarını güncelle. 4) <bölüm>.routes.ts dosyasını örnekteki gibi oluştur."
+        },
+        {
+          "type": "tip",
+          "text": "5) src/app/core/documentation/section-registry.ts içindeki DOCUMENTATION_SECTIONS dizisine yeni bölümü ekle — route'lar, sidebar ve arama otomatik olarak bunu kullanır, app.routes.ts/app.ts/search.service.ts'e dokunmana gerek yok."
+        },
+        {
+          "type": "warning",
+          "text": "6) src/app/core/content/content-validation.spec.ts içindeki pages dizisine yeni content/schema çiftini eklemezsen şema doğrulaması o bölüm için hiç çalışmaz."
+        },
+        {
+          "type": "warning",
+          "text": "7) Bitirince npm test, npm run lint ve npm run build komutlarını çalıştır — hepsi temiz geçmeden bölüm eklenmiş sayılmaz."
+        }
       ],
-      "example": "// my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];",
+      "example": "// 1-4: src/app/features/my-section/my-section.routes.ts\nimport { Routes } from '@angular/router';\nimport { FeatureIndex } from '../../shared/feature-index';\nimport { NodeDetail } from '../../shared/node-detail';\nimport { nodeDetailTitle, pageTitle } from '../../shared/route-title';\nimport mySectionContent from './my-section-content.json';\n\nexport const MY_SECTION_ROUTES: Routes = [\n  { path: '', component: FeatureIndex, data: { content: mySectionContent, basePath: 'my-section' }, title: pageTitle('My Section') },\n  { path: '**', component: NodeDetail, data: { content: mySectionContent, basePath: 'my-section', sectionLabel: 'My Section' }, title: nodeDetailTitle }\n];\n\n// 5: src/app/core/documentation/section-registry.ts — DOCUMENTATION_SECTIONS dizisine ekle\nimport mySectionContent from '../../features/my-section/my-section-content.json';\n// ...\n{\n  label: 'My Section',\n  basePath: 'my-section',\n  content: mySectionContent as SectionContent,\n  loadRoutes: () => import('../../features/my-section/my-section.routes').then(m => m.MY_SECTION_ROUTES)\n}",
       "exampleLang": "typescript",
       "exampleFilename": "my-section.routes.ts",
-      "related": [{ "label": "Yeni Bir Doküman Sayfası Ekleme", "path": "guides/yeni-sayfa-ekleme" }]
+      "related": [
+        { "label": "Yeni Bir Doküman Sayfası Ekleme", "path": "guides/yeni-sayfa-ekleme" }
+      ]
     },
     {
       "id": "icerik-alanlari",
@@ -34,7 +57,9 @@
       "example": "{\n  \"notes\": [\n    { \"type\": \"warning\", \"text\": \"type değeri tip, warning veya note olmalı.\" }\n  ],\n  \"properties\": [\n    { \"name\": \"ornek\", \"type\": \"string\", \"description\": \"Bir tablo satırı örneği.\" }\n  ],\n  \"related\": [\n    { \"label\": \"Yeni Bir Doküman Sayfası Ekleme\", \"path\": \"guides/yeni-sayfa-ekleme\" }\n  ]\n}",
       "exampleLang": "json",
       "exampleFilename": "example-content.json",
-      "related": [{ "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }]
+      "related": [
+        { "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }
+      ]
     }
   ]
 }

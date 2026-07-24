@@ -12,13 +12,30 @@
 </button>
 
 @if (mobileNavOpen()) {
-  <button type="button" class="nav-backdrop" aria-label="Close navigation menu" (click)="toggleMobileNav()"></button>
+  <button
+    type="button"
+    class="nav-backdrop"
+    aria-label="Close navigation menu"
+    (click)="toggleMobileNav()"
+  ></button>
 }
 
 <div class="shell">
-  <aside class="sidebar" id="sidebar-nav" [class.open]="mobileNavOpen()" aria-label="Documentation navigation">
+  <aside
+    class="sidebar"
+    id="sidebar-nav"
+    [class.open]="mobileNavOpen()"
+    aria-label="Documentation navigation"
+  >
     <a class="sidebar-logo" routerLink="/overview" aria-label="Elektraweb Documentation home">
-      <img ngSrc="elektraweb-logo.png" width="450" height="81" priority alt="Elektraweb" class="sidebar-logo-img" />
+      <img
+        ngSrc="elektraweb-logo.png"
+        width="450"
+        height="81"
+        priority
+        alt="Elektraweb"
+        class="sidebar-logo-img"
+      />
     </a>
 
     <app-search-box />
@@ -27,8 +44,14 @@
       <a class="sidebar-back" routerLink="/overview">
         <span aria-hidden="true">&larr;</span> All documentation
       </a>
-      <a class="sidebar-title sidebar-section-link" [routerLink]="'/' + section.path">{{ section.label }}</a>
-      <app-nav-list [items]="section.children ?? []" [expanded]="expanded()" (itemToggled)="toggle($event)" />
+      <a class="sidebar-title sidebar-section-link" [routerLink]="'/' + section.path">{{
+        section.label
+      }}</a>
+      <app-nav-list
+        [items]="section.children ?? []"
+        [expanded]="expanded()"
+        (itemToggled)="toggle($event)"
+      />
     } @else {
       <p class="sidebar-title">Documentation</p>
       <ul class="sidebar-root-list">

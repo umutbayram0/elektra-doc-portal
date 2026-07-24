@@ -3,7 +3,12 @@
     @for (item of navItems; track item.path) {
       <li>
         <div class="nav-row">
-          <a class="nav-link" [routerLink]="'/' + item.path" routerLinkActive="active" [routerLinkActiveOptions]="activeOptions(item)">
+          <a
+            class="nav-link"
+            [routerLink]="'/' + item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="activeOptions(item)"
+          >
             {{ item.label }}
           </a>
 
@@ -12,7 +17,9 @@
               type="button"
               class="nav-toggle"
               [attr.aria-expanded]="expanded().has(item.path)"
-              [attr.aria-label]="(expanded().has(item.path) ? 'Collapse ' : 'Expand ') + item.label + ' section'"
+              [attr.aria-label]="
+                (expanded().has(item.path) ? 'Collapse ' : 'Expand ') + item.label + ' section'
+              "
               (click)="itemToggled.emit(item)"
             >
               <span class="chevron" [class.expanded]="expanded().has(item.path)" aria-hidden="true">

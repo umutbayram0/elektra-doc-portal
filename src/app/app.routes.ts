@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { NotFound } from './shared/not-found';
 import { pageTitle } from './shared/route-title';
+import { DOCUMENTATION_SECTIONS } from './core/documentation/section-registry';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -8,34 +9,9 @@ export const routes: Routes = [
     path: 'overview',
     loadChildren: () => import('./features/overview/overview.routes').then(m => m.OVERVIEW_ROUTES)
   },
-  {
-    path: 'getting-started',
-    loadChildren: () =>
-      import('./features/getting-started/getting-started.routes').then(m => m.GETTING_STARTED_ROUTES)
-  },
-  {
-    path: 'guides',
-    loadChildren: () => import('./features/guides/guides.routes').then(m => m.GUIDES_ROUTES)
-  },
-  {
-    path: 'projects',
-    loadChildren: () => import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)
-  },
-  {
-    path: 'modules',
-    loadChildren: () => import('./features/modules/modules.routes').then(m => m.MODULES_ROUTES)
-  },
-  {
-    path: 'components',
-    loadChildren: () => import('./features/components/components.routes').then(m => m.COMPONENTS_ROUTES)
-  },
-  {
-    path: 'api',
-    loadChildren: () => import('./features/api/api.routes').then(m => m.API_ROUTES)
-  },
-  {
-    path: 'libraries',
-    loadChildren: () => import('./features/libraries/libraries.routes').then(m => m.LIBRARIES_ROUTES)
-  },
+  ...DOCUMENTATION_SECTIONS.map(section => ({
+    path: section.basePath,
+    loadChildren: section.loadRoutes
+  })),
   { path: '**', component: NotFound, title: pageTitle('Page not found') }
 ];

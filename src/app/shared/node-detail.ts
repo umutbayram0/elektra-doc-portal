@@ -16,6 +16,8 @@ hljs.registerLanguage('scss', scss);
 hljs.registerLanguage('json', json);
 hljs.registerLanguage('http', http);
 hljs.registerLanguage('bash', bash);
+
+const KNOWN_LANGUAGES = new Set(['typescript', 'html', 'scss', 'json', 'http', 'bash']);
 import { Breadcrumbs } from './breadcrumbs';
 import type { BreadcrumbItem } from './breadcrumb.model';
 import { findNodePath } from './find-node-path';
@@ -89,8 +91,12 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
                 <tbody>
                   @for (prop of current.properties; track prop.name) {
                     <tr>
-                      <td><code>{{ prop.name }}</code></td>
-                      <td><code>{{ prop.type }}</code></td>
+                      <td>
+                        <code>{{ prop.name }}</code>
+                      </td>
+                      <td>
+                        <code>{{ prop.type }}</code>
+                      </td>
                       <td>
                         @if (prop.default) {
                           <code>{{ prop.default }}</code>
@@ -110,7 +116,11 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
             <h2 id="in-this-section">In this section</h2>
             <section class="card-grid">
               @for (child of current.children; track child.id) {
-                <app-node-tile [title]="child.title" [description]="child.description" [path]="childPath(child)" />
+                <app-node-tile
+                  [title]="child.title"
+                  [description]="child.description"
+                  [path]="childPath(child)"
+                />
               }
             </section>
           }
@@ -119,7 +129,9 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
             <h2 id="related">Related topics</h2>
             <ul class="related-list">
               @for (item of current.related; track item.path) {
-                <li><a [routerLink]="'/' + item.path">{{ item.label }}</a></li>
+                <li>
+                  <a [routerLink]="'/' + item.path">{{ item.label }}</a>
+                </li>
               }
             </ul>
           }
@@ -131,12 +143,16 @@ const NOTE_LABELS: Record<'tip' | 'warning' | 'note', string> = {
               <p class="page-toc-title">On this page</p>
               <ul>
                 @for (item of tocItems(); track item.id) {
-                  <li><a [href]="'#' + item.id">{{ item.label }}</a></li>
+                  <li>
+                    <a [href]="'#' + item.id">{{ item.label }}</a>
+                  </li>
                 }
               </ul>
             }
             @if (editHref(); as href) {
-              <a class="edit-link" [href]="href" target="_blank" rel="noopener">Edit this page on GitHub</a>
+              <a class="edit-link" [href]="href" target="_blank" rel="noopener"
+                >Edit this page on GitHub</a
+              >
             }
           </nav>
         }
@@ -204,10 +220,17 @@ export class NodeDetail {
       return;
     }
     const code = element.nativeElement;
-    code.className = `code-block-code language-${current.exampleLang ?? 'plaintext'}`;
+    const isKnownLang = !!current.exampleLang && KNOWN_LANGUAGES.has(current.exampleLang);
+    code.className = isKnownLang
+      ? `code-block-code language-${current.exampleLang}`
+      : 'code-block-code';
     code.textContent = current.example;
     delete code.dataset['highlighted'];
-    hljs.highlightElement(code);
+    // Unregistered/unknown exampleLang values are shown as plain text instead of
+    // being passed to hljs, so unexpected content never breaks page rendering.
+    if (isKnownLang) {
+      hljs.highlightElement(code);
+    }
   });
 
   protected readonly copied = signal(false);

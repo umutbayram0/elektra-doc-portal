@@ -45,7 +45,9 @@ describe('SearchBox', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const dialog = (fixture.nativeElement as HTMLElement).querySelector('dialog') as HTMLDialogElement;
+    const dialog = (fixture.nativeElement as HTMLElement).querySelector(
+      'dialog'
+    ) as HTMLDialogElement;
     expect(dialog.open).toBe(true);
   });
 

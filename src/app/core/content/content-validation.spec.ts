@@ -1,4 +1,6 @@
 import { validateContent } from './validate-content';
+import { findDuplicateSiblingIds, findBrokenRelatedLinks } from './semantic-validation';
+import { DOCUMENTATION_SECTIONS } from '../documentation/section-registry';
 
 import overviewSchema from '../../features/overview/overview-content.schema.json';
 import overviewContent from '../../features/overview/overview-content.json';
@@ -29,20 +31,23 @@ describe('page content vs. JSON Schema', () => {
     { name: 'libraries', schema: librariesSchema, content: librariesContent }
   ];
 
-  it.each(pages)('$name-content.json satisfies $name-content.schema.json', ({ schema, content }) => {
-    const result = validateContent(schema, content);
-    expect(result.errors).toEqual([]);
-    expect(result.valid).toBe(true);
-  });
+  it.each(pages)(
+    '$name-content.json satisfies $name-content.schema.json',
+    ({ schema, content }) => {
+      const result = validateContent(schema, content);
+      expect(result.errors).toEqual([]);
+      expect(result.valid).toBe(true);
+    }
+  );
 
   it('rejects a card without an id', () => {
     const broken = {
-      title: 'Overview',
-      description: 'General information about documentation portal.',
-      cards: [{ title: 'Projects', description: 'Missing its id.' }]
+      title: 'Projects',
+      description: 'Projects',
+      cards: [{ title: 'Web Apps', description: 'Missing its id.' }]
     };
 
-    const result = validateContent(overviewSchema, broken);
+    const result = validateContent(projectsSchema, broken);
 
     expect(result.valid).toBe(false);
     expect(result.errors.length).toBeGreaterThan(0);
@@ -50,12 +55,14 @@ describe('page content vs. JSON Schema', () => {
 
   it('rejects an unknown field', () => {
     const broken = {
-      title: 'Overview',
-      description: 'General information about documentation portal.',
-      cards: [{ id: 'projects', title: 'Projects', description: 'Has a typo field.', descriptoin: 'oops' }]
+      title: 'Projects',
+      description: 'Projects',
+      cards: [
+        { id: 'web-apps', title: 'Web Apps', description: 'Has a typo field.', descriptoin: 'oops' }
+      ]
     };
 
-    const result = validateContent(overviewSchema, broken);
+    const result = validateContent(projectsSchema, broken);
 
     expect(result.valid).toBe(false);
     expect(result.errors.length).toBeGreaterThan(0);
@@ -79,5 +86,49 @@ describe('page content vs. JSON Schema', () => {
 
     expect(result.valid).toBe(false);
     expect(result.errors.length).toBeGreaterThan(0);
+  });
+
+  it('rejects an id that is not a lowercase, hyphen-separated slug', () => {
+    const broken = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [{ id: 'Not_A_Slug!', title: 'Bad', description: 'Bad id format.' }]
+    };
+
+    const result = validateContent(projectsSchema, broken);
+
+    expect(result.valid).toBe(false);
+    expect(result.errors.length).toBeGreaterThan(0);
+  });
+
+  it('accepts a valid lowercase, hyphen-separated slug id', () => {
+    const ok = {
+      title: 'Projects',
+      description: 'Projects',
+      cards: [{ id: 'valid-slug-123', title: 'Good', description: 'Valid id format.' }]
+    };
+
+    const result = validateContent(projectsSchema, ok);
+
+    expect(result.valid).toBe(true);
+    expect(result.errors).toEqual([]);
+  });
+});
+
+describe('real content semantic rules', () => {
+  it('has no duplicate sibling ids in any documentation section', () => {
+    const errors = DOCUMENTATION_SECTIONS.flatMap(section =>
+      findDuplicateSiblingIds(section.content.cards)
+    );
+    expect(errors).toEqual([]);
+  });
+
+  it('has no related links that point to a non-existent node', () => {
+    const sections = DOCUMENTATION_SECTIONS.map(s => ({
+      basePath: s.basePath,
+      cards: s.content.cards
+    }));
+    const errors = findBrokenRelatedLinks(sections);
+    expect(errors).toEqual([]);
   });
 });

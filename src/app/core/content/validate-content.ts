@@ -12,6 +12,8 @@ export function validateContent(schema: object, data: unknown): ContentValidatio
 
   return {
     valid,
-    errors: (validate.errors ?? []).map(error => `${error.instancePath || '(root)'} ${error.message}`)
+    errors: (validate.errors ?? []).map(
+      error => `${error.instancePath || '(root)'} ${error.message}`
+    )
   };
 }

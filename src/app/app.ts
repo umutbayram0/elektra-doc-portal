@@ -7,14 +7,7 @@ import { NavList } from './shared/nav-list';
 import { SearchBox } from './shared/search-box';
 import type { NavItem } from './shared/nav-item.model';
 import type { DocNode } from './shared/doc-node.model';
-
-import gettingStartedContent from './features/getting-started/getting-started-content.json';
-import guidesContent from './features/guides/guides-content.json';
-import projectsContent from './features/projects/projects-content.json';
-import modulesContent from './features/modules/modules-content.json';
-import componentsContent from './features/components/components-content.json';
-import apiContent from './features/api/api-content.json';
-import librariesContent from './features/libraries/libraries-content.json';
+import { DOCUMENTATION_SECTIONS } from './core/documentation/section-registry';
 
 function mapNode(node: DocNode, parentPath: string): NavItem {
   const path = `${parentPath}/${node.id}`;
@@ -34,15 +27,9 @@ function section(label: string, path: string, cards: DocNode[]): NavItem {
 export class App {
   private readonly router = inject(Router);
 
-  readonly navSections: NavItem[] = [
-    section('Getting Started', 'getting-started', gettingStartedContent.cards as DocNode[]),
-    section('Guides', 'guides', guidesContent.cards as DocNode[]),
-    section('Projects', 'projects', projectsContent.cards as DocNode[]),
-    section('Modules', 'modules', modulesContent.cards as DocNode[]),
-    section('Components', 'components', componentsContent.cards as DocNode[]),
-    section('API', 'api', apiContent.cards as DocNode[]),
-    section('Libraries', 'libraries', librariesContent.cards as DocNode[])
-  ];
+  readonly navSections: NavItem[] = DOCUMENTATION_SECTIONS.map(s =>
+    section(s.label, s.basePath, s.content.cards)
+  );
 
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -53,13 +40,12 @@ export class App {
   );
 
   private readonly urlSegments = computed(() =>
-    this.currentUrl()
-      .split(/[?#]/)[0]
-      .split('/')
-      .filter(Boolean)
+    this.currentUrl().split(/[?#]/)[0].split('/').filter(Boolean)
   );
 
-  readonly activeSection = computed(() => this.navSections.find(item => item.path === this.urlSegments()[0]));
+  readonly activeSection = computed(() =>
+    this.navSections.find(item => item.path === this.urlSegments()[0])
+  );
 
   readonly pageLang = computed(() => {
     this.currentUrl();
@@ -77,7 +63,8 @@ export class App {
       for (const item of items) {
         const itemSegments = item.path.split('/');
         const isAncestor =
-          itemSegments.length < segments.length && itemSegments.every((segment, i) => segment === segments[i]);
+          itemSegments.length < segments.length &&
+          itemSegments.every((segment, i) => segment === segments[i]);
         if (isAncestor) {
           keys.add(item.path);
         }
@@ -91,7 +78,9 @@ export class App {
   });
 
   private readonly toggledKeys = signal<ReadonlySet<string>>(new Set());
-  readonly expanded = computed(() => new Set([...this.toggledKeys(), ...this.activeAncestorKeys()]));
+  readonly expanded = computed(
+    () => new Set([...this.toggledKeys(), ...this.activeAncestorKeys()])
+  );
 
   readonly mobileNavOpen = signal(false);
 

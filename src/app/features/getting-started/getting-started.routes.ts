@@ -14,7 +14,12 @@ export const GETTING_STARTED_ROUTES: Routes = [
   {
     path: '**',
     component: NodeDetail,
-    data: { content: gettingStartedContent, basePath: 'getting-started', sectionLabel: 'Getting Started', lang: 'tr' },
+    data: {
+      content: gettingStartedContent,
+      basePath: 'getting-started',
+      sectionLabel: 'Getting Started',
+      lang: 'tr'
+    },
     title: nodeDetailTitle
   }
 ];

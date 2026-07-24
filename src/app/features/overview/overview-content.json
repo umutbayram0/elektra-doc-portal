@@ -1,6 +1,5 @@
 {
   "title": "Overview",
-  "description": "General information about documentation portal.",
-  "purpose": "The goal of this portal is to provide a reusable documentation structure for projects, modules, components, APIs and libraries.",
-  "cards": []
+  "description": "General information about this documentation portal.",
+  "purpose": "This portal is a generic, reusable documentation structure for Elektraweb's own projects, modules, components, APIs and libraries. Real content is added by the team members who own each project."
 }

@@ -67,4 +67,27 @@ describe('App', () => {
     expect(sidebarText).not.toContain('Getting Started');
     expect(sidebarText).not.toContain('Modules');
   });
+
+  it('toggles the mobile nav and keeps aria-expanded/aria-controls in sync', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/overview');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const toggle = compiled.querySelector('.nav-toggle-mobile') as HTMLButtonElement;
+    const sidebar = compiled.querySelector('#sidebar-nav') as HTMLElement;
+
+    expect(toggle.getAttribute('aria-controls')).toBe('sidebar-nav');
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(sidebar.classList.contains('open')).toBe(false);
+
+    toggle.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(sidebar.classList.contains('open')).toBe(true);
+  });
 });

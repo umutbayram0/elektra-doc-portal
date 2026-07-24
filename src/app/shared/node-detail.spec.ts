@@ -16,11 +16,23 @@ const testCards: DocNode[] = [
       { type: 'warning', text: 'A cautionary warning.' }
     ],
     properties: [
-      { name: 'size', type: 'string', default: '"medium"', description: 'Controls the rendered size.' },
+      {
+        name: 'size',
+        type: 'string',
+        default: '"medium"',
+        description: 'Controls the rendered size.'
+      },
       { name: 'disabled', type: 'boolean', description: 'Disables the control.' }
     ],
     related: [{ label: 'Beta', path: 'test/alpha/beta' }],
     children: [{ id: 'beta', title: 'Beta', description: 'Beta description' }]
+  },
+  {
+    id: 'gamma',
+    title: 'Gamma',
+    description: 'Gamma description',
+    example: 'print("hi")',
+    exampleLang: 'python'
   }
 ];
 
@@ -68,9 +80,9 @@ describe('NodeDetail', () => {
     await fixture.whenStable();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const crumbs = Array.from(compiled.querySelectorAll('.breadcrumbs a, .breadcrumbs [aria-current]')).map(el =>
-      el.textContent?.trim()
-    );
+    const crumbs = Array.from(
+      compiled.querySelectorAll('.breadcrumbs a, .breadcrumbs [aria-current]')
+    ).map(el => el.textContent?.trim());
     expect(crumbs).toEqual(['Test', 'Alpha', 'Beta']);
   });
 
@@ -81,7 +93,9 @@ describe('NodeDetail', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const tileLink = (fixture.nativeElement as HTMLElement).querySelector('.node-tile') as HTMLAnchorElement;
+    const tileLink = (fixture.nativeElement as HTMLElement).querySelector(
+      '.node-tile'
+    ) as HTMLAnchorElement;
     expect(tileLink.textContent).toContain('Beta');
     expect(tileLink.getAttribute('href')).toBe('/test/alpha/beta');
   });
@@ -106,7 +120,9 @@ describe('NodeDetail', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('.callout-tip')?.textContent).toContain('A helpful tip.');
-    expect(compiled.querySelector('.callout-warning')?.textContent).toContain('A cautionary warning.');
+    expect(compiled.querySelector('.callout-warning')?.textContent).toContain(
+      'A cautionary warning.'
+    );
 
     const propertyRows = Array.from(compiled.querySelectorAll('.properties-table tbody tr'));
     expect(propertyRows.length).toBe(2);
@@ -118,8 +134,23 @@ describe('NodeDetail', () => {
     expect(relatedLink.textContent).toContain('Beta');
     expect(relatedLink.getAttribute('href')).toBe('/test/alpha/beta');
 
-    const tocLabels = Array.from(compiled.querySelectorAll('.page-toc ul a')).map(el => el.textContent?.trim());
+    const tocLabels = Array.from(compiled.querySelectorAll('.page-toc ul a')).map(el =>
+      el.textContent?.trim()
+    );
     expect(tocLabels).toEqual(['Example', 'Properties', 'In this section', 'Related topics']);
+  });
+
+  it('renders an example with an unrecognized exampleLang as plain text, without throwing', async () => {
+    const fixture = TestBed.createComponent(TestHost);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/test/gamma');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const code = compiled.querySelector('code');
+    expect(code?.textContent).toContain('print("hi")');
+    expect(code?.className).not.toContain('language-python');
   });
 
   it('copies example to clipboard', async () => {

@@ -12,38 +12,8 @@
     },
     "purpose": {
       "type": "string"
-    },
-    "cards": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/DocNode"
-      }
     }
   },
-  "required": ["title", "description", "purpose", "cards"],
-  "additionalProperties": false,
-  "$defs": {
-    "DocNode": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "children": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/DocNode"
-          }
-        }
-      },
-      "required": ["id", "title", "description"],
-      "additionalProperties": false
-    }
-  }
+  "required": ["title", "description", "purpose"],
+  "additionalProperties": false
 }

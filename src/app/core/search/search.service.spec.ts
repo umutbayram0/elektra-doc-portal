@@ -20,4 +20,14 @@ describe('SearchService', () => {
     service.query.set('zzzznonexistent');
     expect(service.results()).toEqual([]);
   });
+
+  it('finds an empty section by its own root page, not just its nodes', () => {
+    const service = new SearchService();
+    service.query.set('api');
+
+    const results = service.results();
+    const rootResult = results.find(result => result.title === 'API');
+    expect(rootResult).toBeTruthy();
+    expect(rootResult?.path).toBe('api');
+  });
 });

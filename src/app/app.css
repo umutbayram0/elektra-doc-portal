@@ -215,11 +215,20 @@
     z-index: 25;
     background-color: var(--mat-sys-surface);
     transform: translateX(-100%);
-    transition: transform 0.2s ease;
+    /* Closed sidebar is fully offscreen, but a transform alone leaves its
+       links focusable/tabbable. visibility: hidden removes them from the tab
+       order and the accessibility tree; the transition delay keeps it visible
+       until the slide-out animation finishes, so closing still looks the same. */
+    visibility: hidden;
+    transition:
+      transform 0.2s ease,
+      visibility 0s linear 0.2s;
   }
 
   .sidebar.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.2s ease;
   }
 
   .nav-backdrop {

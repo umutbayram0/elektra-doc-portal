@@ -10,7 +10,10 @@ export function pageTitle(label: string): string {
 
 export function nodeDetailTitle(route: ActivatedRouteSnapshot): string {
   const { cards } = route.data['content'] as SectionContent;
-  const nodePath = findNodePath(cards, route.url.map(segment => segment.path));
+  const nodePath = findNodePath(
+    cards,
+    route.url.map(segment => segment.path)
+  );
   const node = nodePath?.at(-1);
   return node ? pageTitle(node.title) : SITE_NAME;
 }

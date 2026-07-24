@@ -22,3 +22,22 @@ function flattenNodes(nodes: DocNode[], section: string, ancestorPath: string): 
 export function buildSearchIndex(sections: SearchSection[]): SearchItem[] {
   return sections.flatMap(section => flattenNodes(section.nodes, section.label, section.basePath));
 }
+
+export interface SearchRootSection {
+  label: string;
+  basePath: string;
+  description: string;
+}
+
+/**
+ * One search item per section's own index page, so searching "API" or
+ * "Components" finds the section root even when it has no cards yet.
+ */
+export function buildSectionRootItems(sections: SearchRootSection[]): SearchItem[] {
+  return sections.map(section => ({
+    title: section.label,
+    description: section.description,
+    path: section.basePath,
+    section: section.label
+  }));
+}

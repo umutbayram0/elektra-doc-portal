@@ -20,6 +20,8 @@ describe('NodeTile', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Route Guards');
     expect(compiled.textContent).toContain('Guards description');
-    expect(compiled.querySelector('a')?.getAttribute('href')).toBe('/modules/authentication/route-guards');
+    expect(compiled.querySelector('a')?.getAttribute('href')).toBe(
+      '/modules/authentication/route-guards'
+    );
   });
 });

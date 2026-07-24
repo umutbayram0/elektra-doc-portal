@@ -15,19 +15,27 @@
       "title": "İlk Doküman Sayfanı Ekle",
       "description": "Her bölüm (Projects, Modules, Components, API, Libraries) iç içe kartlardan oluşan bir JSON dosyasıdır. İlgili *-content.json dosyasına benzersiz bir id, title ve description içeren bir madde eklemek yeni bir sayfa oluşturmak için yeterlidir — component kodu gerekmez.",
       "notes": [
-        { "type": "tip", "text": "children ile sayfalar istediğin kadar iç içe geçebilir. Her biri gerçek bir URL alır, örn. /modules/authentication/route-guards." }
+        {
+          "type": "tip",
+          "text": "children ile sayfalar istediğin kadar iç içe geçebilir. Her biri gerçek bir URL alır, örn. /modules/authentication/route-guards."
+        }
       ],
       "example": "{\n  \"id\": \"route-guards\",\n  \"title\": \"Route Guards\",\n  \"description\": \"Route guards check user permissions before a protected route loads.\"\n}",
       "exampleLang": "json",
       "exampleFilename": "modules-content.json",
-      "related": [{ "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }]
+      "related": [
+        { "label": "Yeni Bir Üst Düzey Bölüm Ekleme", "path": "guides/yeni-bolum-ekleme" }
+      ]
     },
     {
       "id": "validate",
       "title": "Değişikliğini Doğrula ve Test Et",
       "description": "Pull request açmadan önce test paketini çalıştır. Şema doğrulama testi, eksik bir id ya da bilinmeyen bir alan gibi yapısal hataları sen daha tarayıcıyı açmadan yakalar.",
       "notes": [
-        { "type": "warning", "text": "Her content şemasında additionalProperties false'tur. Yanlış yazılmış bir alan adı sessizce yok sayılmaz, doğrulama hatası verir." }
+        {
+          "type": "warning",
+          "text": "Her content şemasında additionalProperties false'tur. Yanlış yazılmış bir alan adı sessizce yok sayılmaz, doğrulama hatası verir."
+        }
       ],
       "example": "npm test\nnpm run lint",
       "exampleLang": "bash",
