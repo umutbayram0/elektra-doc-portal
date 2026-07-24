@@ -1,37 +1,5 @@
 {
   "title": "Components",
-  "description": "Frontend component usage, inputs, outputs and code examples.",
-  "cards": [
-    {
-      "id": "buttons",
-      "title": "Buttons",
-      "description": "Button variants and usage guidelines.",
-      "children": [
-        {
-          "id": "primary-button",
-          "title": "Primary Button",
-          "description": "Angular Material's mat-button directive, applied to a native <button>.",
-          "properties": [
-            { "name": "color", "type": "\"primary\" | \"accent\" | \"warn\"", "default": "\"primary\"", "description": "Material theme color applied to the button." },
-            { "name": "disabled", "type": "boolean", "default": "false", "description": "Disables the button and removes it from the tab order." },
-            { "name": "mat-flat-button", "type": "attribute", "description": "Filled variant, used for the primary action on a page." },
-            { "name": "mat-stroked-button", "type": "attribute", "description": "Outlined variant, used for secondary actions like Cancel." }
-          ],
-          "example": "<button mat-flat-button color=\"primary\">Save changes</button>\n<button mat-stroked-button>Cancel</button>",
-          "exampleLang": "html",
-          "exampleFilename": "buttons.html"
-        }
-      ]
-    },
-    {
-      "id": "forms",
-      "title": "Forms",
-      "description": "TODO: document form components."
-    },
-    {
-      "id": "data-tables",
-      "title": "Data Tables",
-      "description": "TODO: document sortable/filterable tables."
-    }
-  ]
+  "description": "No content added yet — see Guides for how to add component documentation here.",
+  "cards": []
 }

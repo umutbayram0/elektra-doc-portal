@@ -1,53 +1,5 @@
 {
   "title": "API",
-  "description": "REST endpoint reference: request/response bodies, status codes and field-level docs.",
-  "cards": [
-    {
-      "id": "authentication-api",
-      "title": "Authentication API",
-      "description": "TODO: document login/token endpoints."
-    },
-    {
-      "id": "users-api",
-      "title": "Users API",
-      "description": "Create and update endpoints for the user resource.",
-      "children": [
-        {
-          "id": "create-user",
-          "title": "Create User",
-          "description": "POST endpoint for creating a new user record.",
-          "notes": [
-            { "type": "note", "text": "email must be unique — a duplicate returns 409 Conflict instead of 201." }
-          ],
-          "properties": [
-            { "name": "email", "type": "string", "description": "The new user's email address. Required." },
-            { "name": "role", "type": "\"member\" | \"admin\"", "default": "\"member\"", "description": "Access level granted to the user on creation." },
-            { "name": "id", "type": "number", "description": "Server-generated identifier, present only in the response." }
-          ],
-          "example": "POST /api/users\nContent-Type: application/json\n\n{ \"email\": \"user@example.com\", \"role\": \"member\" }\n\nHTTP/1.1 201 Created\nContent-Type: application/json\n\n{ \"id\": 42, \"email\": \"user@example.com\", \"role\": \"member\" }",
-          "exampleLang": "http",
-          "exampleFilename": "POST /api/users",
-          "related": [
-            { "label": "Update User", "path": "api/users-api/update-user" }
-          ]
-        },
-        {
-          "id": "update-user",
-          "title": "Update User",
-          "description": "PATCH endpoint for updating an existing user record.",
-          "example": "PATCH /api/users/42\nContent-Type: application/json\n\n{ \"role\": \"admin\" }\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{ \"id\": 42, \"email\": \"user@example.com\", \"role\": \"admin\" }",
-          "exampleLang": "http",
-          "exampleFilename": "PATCH /api/users/{id}",
-          "related": [
-            { "label": "Create User", "path": "api/users-api/create-user" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "reporting-api",
-      "title": "Reporting API",
-      "description": "TODO: document reporting/export endpoints."
-    }
-  ]
+  "description": "No content added yet — see Guides for how to add API documentation here.",
+  "cards": []
 }

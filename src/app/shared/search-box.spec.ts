@@ -60,12 +60,12 @@ describe('SearchBox', () => {
     await fixture.whenStable();
 
     const input = compiled.querySelector('input') as HTMLInputElement;
-    input.value = 'route guard';
+    input.value = 'projects';
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(compiled.textContent).toContain('Route Guards');
+    expect(compiled.textContent).toContain('Yeni Bir Doküman Sayfası Ekleme');
 
     const dialog = compiled.querySelector('dialog') as HTMLDialogElement;
     dialog.close();

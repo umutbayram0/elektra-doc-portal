@@ -1,31 +1,5 @@
 {
   "title": "Projects",
-  "description": "Technical documentation pages for different Elektraweb software projects.",
-  "cards": [
-    {
-      "id": "web-apps",
-      "title": "Web Applications",
-      "description": "How this portal's own Angular app is structured.",
-      "children": [
-        {
-          "id": "routing",
-          "title": "Routing",
-          "description": "This portal's own feature areas are lazy-loaded using Angular's Router — the example below is copied directly from this repo's app.routes.ts.",
-          "example": "export const routes: Routes = [\n  {\n    path: 'projects',\n    loadChildren: () =>\n      import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)\n  }\n];",
-          "exampleLang": "typescript",
-          "exampleFilename": "app.routes.ts"
-        }
-      ]
-    },
-    {
-      "id": "mobile-apps",
-      "title": "Mobile Applications",
-      "description": "TODO: document the mobile app."
-    },
-    {
-      "id": "internal-tools",
-      "title": "Internal Tools",
-      "description": "TODO: document internal tools."
-    }
-  ]
+  "description": "No content added yet — see Guides for how to add project documentation here.",
+  "cards": []
 }

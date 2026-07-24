@@ -8,11 +8,11 @@ describe('SearchService', () => {
 
   it('matches items by title, case-insensitively', () => {
     const service = new SearchService();
-    service.query.set('route guard');
+    service.query.set('projects');
 
     const results = service.results();
     expect(results.length).toBeGreaterThan(0);
-    expect(results.some(result => result.title === 'Route Guards')).toBe(true);
+    expect(results.some(result => result.title === 'Yeni Bir Doküman Sayfası Ekleme')).toBe(true);
   });
 
   it('returns nothing for an unmatched query', () => {

@@ -1,39 +1,5 @@
 {
   "title": "Modules",
-  "description": "Module-based technical explanations and responsibilities.",
-  "cards": [
-    {
-      "id": "authentication",
-      "title": "Authentication",
-      "description": "Login and permission logic for this module.",
-      "children": [
-        {
-          "id": "route-guards",
-          "title": "Route Guards",
-          "description": "A route guard checks a condition (e.g. is the user logged in) before a route is allowed to load.",
-          "notes": [
-            { "type": "tip", "text": "Functional guards (CanActivateFn) need no NgModule providers — inject() just works." },
-            { "type": "warning", "text": "Returning false blocks navigation silently. Redirect to a login route instead of leaving a blank screen." }
-          ],
-          "example": "import { inject } from '@angular/core';\nimport { CanActivateFn } from '@angular/router';\nimport { AuthService } from './auth.service';\n\nexport const authGuard: CanActivateFn = (route, state) => {\n  const authService = inject(AuthService);\n  return authService.isAuthenticated();\n};",
-          "exampleLang": "typescript",
-          "exampleFilename": "auth.guard.ts",
-          "related": [
-            { "label": "Dependency Injection", "path": "modules/authentication/dependency-injection" }
-          ]
-        },
-        {
-          "id": "dependency-injection",
-          "title": "Dependency Injection",
-          "description": "A service registered with providedIn: 'root' becomes a singleton that can be injected into guards and components.",
-          "example": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class AuthService {\n  private readonly session = signal<string | null>(null);\n\n  isAuthenticated(): boolean {\n    return this.session() !== null;\n  }\n}",
-          "exampleLang": "typescript",
-          "exampleFilename": "auth.service.ts",
-          "related": [
-            { "label": "Route Guards", "path": "modules/authentication/route-guards" }
-          ]
-        }
-      ]
-    }
-  ]
+  "description": "No content added yet — see Guides for how to add module documentation here.",
+  "cards": []
 }

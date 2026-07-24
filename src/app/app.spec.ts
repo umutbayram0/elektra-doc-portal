@@ -53,16 +53,18 @@ describe('App', () => {
   it('drills into a section in the sidebar', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
-    await router.navigateByUrl('/modules/authentication/route-guards');
+    await router.navigateByUrl('/guides/yeni-sayfa-ekleme');
     fixture.detectChanges();
     await fixture.whenStable();
 
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.sidebar-back')).not.toBeNull();
-    expect(compiled.querySelector('.sidebar-section-link')?.textContent?.trim()).toBe('Modules');
+    expect(compiled.querySelector('.sidebar-section-link')?.textContent?.trim()).toBe('Guides');
     expect(compiled.querySelector('.sidebar-root-list')).toBeNull();
-    expect(compiled.textContent).toContain('Authentication');
-    expect(compiled.textContent).not.toContain('Getting Started');
-    expect(compiled.textContent).not.toContain('Libraries');
+    expect(compiled.textContent).toContain('Yeni Bir Doküman Sayfası Ekleme');
+
+    const sidebarText = compiled.querySelector('.sidebar')?.textContent;
+    expect(sidebarText).not.toContain('Getting Started');
+    expect(sidebarText).not.toContain('Modules');
   });
 });
